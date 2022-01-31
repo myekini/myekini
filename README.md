@@ -1,4 +1,4 @@
-<a href="#"><img width="" height="" src="logo.png" align="center"  style="border-radius:50%"/></a>
+<p align="center"> <a href="#"><img width="auto" height="100" src="logo.png" style="border-radius:50%"/></a></p>
 
 <h1 align="center">Hi 👋, I'm Muhammad Yekini</h1>
 <h3 align="center">Python (Django) developer | Mobile Web specialist</h3>

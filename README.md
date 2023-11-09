@@ -1,4 +1,4 @@
-<p align="center"> <a href="#"><img width="auto" height="100" src="44311524.png" style="border-radius:50%"/></a></p>
+<p align="center"> <a href="#"><img width="auto" height="100" src="assets/mybot.png" style="border-radius:50%"/></a></p>
 
 <h1 align="center">Hi 👋, I'm Muhammad Yekini</h1>
 <h3 align="center">Python (BOT) Engineer || machine Learning Engineer||Data Analyst</h3>

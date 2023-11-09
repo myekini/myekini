@@ -3,7 +3,7 @@
 <h1 align="center">Hi 👋, I'm Muhammad Yekini</h1>
 <h3 align="center">Python (BOT) Engineer || machine Learning Engineer||Data Analyst</h3>
 
-<h3 align="left"> I specialize in developing impactful chatbots for customer service and community engagement, spanning platforms such as Messenger, the web, and Telegram. Additionally, I've played a key role in rebranding and maintaining loan application solutions, ERP systems, and various operational projects. Proficient in the data science industry, I leverage machine and deep learning to construct AI systems, ensuring the creation of effective and reliable models.</h3>
+I specialize in developing impactful chatbots for customer service and community engagement, spanning platforms such as Messenger, the web, and Telegram. Additionally, I've played a key role in rebranding and maintaining loan application solutions, ERP systems, and various operational projects. Proficient in the data science industry, I leverage machine and deep learning to construct AI systems, ensuring the creation of effective and reliable models.
 
 
 

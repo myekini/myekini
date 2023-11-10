@@ -29,6 +29,7 @@ I specialize in developing impactful chatbots for customer service and community
 
 ### Blogs posts
 <!-- BLOG-POST-LIST:START -->
+- [Best websites to learn code 2021](https://muhammadyk.medium.com/best-websites-to-learn-code-2021-5c8a53a9dec1?source=rss-8607d1202f88------2)
 <!-- BLOG-POST-LIST:END -->
 
 <h3 align="left">Connect with me:</h3>

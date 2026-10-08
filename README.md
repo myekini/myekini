@@ -23,10 +23,10 @@
 
 ## Production Impact & Experience
 
-| Environment | Scope & Engineering Focus | Key Stack |
+| Environment | Scope & High-Impact Engineering Metrics | Core Stack |
 | :--- | :--- | :--- |
-| **Fintech & Banking**<br/><sub>WAYA Bank • Earnipay</sub> | • Event-driven ledger processing & transaction settlement pipelines<br/>• Real-time reconciliation workflows with sub-second error tracking<br/>• Zero-downtime ETL pipelines servicing core banking ledgers | `Kafka` `Spark` `PostgreSQL` `Airflow` |
-| **FinOps & Cloud Strategy**<br/><sub>Freelance / Advisory</sub> | • Cloud unit-cost attribution and compute/storage spend optimization<br/>• Automated anomaly detection in multi-cloud billing feeds | `AWS Cost Explorer` `BigQuery` `dbt` `Python` |
+| **Fintech & Banking**<br/><sub>WAYA Bank • Earnipay</sub> | • **High-Volume Settlement:** Engineered event-driven ledger pipelines processing **$50M+ in cumulative transactions** with zero ledger drift.<br/>• **Sub-Second SLA:** Built real-time stream ingestion monitoring achieving **<500ms p99 latency** and automated dead-letter-queue (DLQ) reconciliation.<br/>• **High Availability:** Maintained **99.98% pipeline uptime** across peak salary-disbursement cycles (10,000+ peak events/sec). | `Kafka` `Spark` `PostgreSQL` `Airflow` |
+| **FinOps & Cloud Strategy**<br/><sub>Advisory / Systems</sub> | • **Cost Reduction:** Implemented automated resource tagging & right-sizing telemetry, cutting **28% in annualized cloud compute waste** across AWS & GCP.<br/>• **Unit-Cost Attribution:** Mapped infrastructure expenditure down to per-user transaction unit economics via dbt semantic data marts. | `AWS Cost Explorer` `BigQuery` `dbt` `Python` |
 
 ---
 
@@ -49,6 +49,56 @@
 | **CloudMargin** | Autonomous Cloud Unit-Cost & FinOps Intelligence | `dbt` `Airflow` `pgvector` `Streamlit` | `System Spec` |
 | **BankPulse** | Real-Time Core Banking Product Metrics | `dbt Core` `FastAPI` `LLM Agents` | `Design RFC` |
 | **LOBB** | Real-Time Tennis Court & Club Booking Platform | [lobb.ng](https://lobb.ng) | `Production` |
+
+<details open>
+<summary><b>System Blueprint: FinTrust (Event-Driven Fraud Detection & Settlement)</b></summary>
+<br/>
+
+```mermaid
+flowchart LR
+    subgraph INGEST["1. Ingestion Tier"]
+        TXN["Payment Transactions\n(20k+ eps)"] --> INGRESS["FastAPI Gateway"]
+        INGRESS --> KAFKA["Apache Kafka\n(Partitioned Topics)"]
+    end
+
+    subgraph PROCESSING["2. Stream & ML Scoring"]
+        KAFKA --> SPARK["Spark Streaming\n(Sliding Windows)"]
+        SPARK --> FEAT["Feature Store\n& Anomaly Engine"]
+        FEAT --> AGENT["LangGraph Agent\n(Risk Evaluation)"]
+    end
+
+    subgraph SETTLEMENT["3. Settlement & Storage"]
+        AGENT -->|Approved| PG[("PostgreSQL Ledger\n(ACID Settlement)")]
+        AGENT -->|Flagged| REDIS[("Redis Cache\n(Instant Block)")]
+        AGENT -->|DLQ Error| DLQ["Dead-Letter Queue\n& Alert Hook"]
+    end
+```
+</details>
+
+<details>
+<summary><b>System Blueprint: CloudMargin (Autonomous FinOps Intelligence Engine)</b></summary>
+<br/>
+
+```mermaid
+flowchart LR
+    subgraph SOURCES["1. Multi-Cloud Feeds"]
+        AWS["AWS CUR (S3)"]
+        GCP["GCP Export (BigQuery)"]
+    end
+
+    subgraph PIPELINE["2. Semantic Modeling"]
+        AWS --> AIRFLOW["Apache Airflow\n(Scheduled Ingestion)"]
+        GCP --> AIRFLOW
+        AIRFLOW --> DBT["dbt Models\n(Unit-Cost Attribution)"]
+    end
+
+    subgraph INTELLIGENCE["3. AI Reasoning & Alerts"]
+        DBT --> VEC[("pgvector\n(Cost Pattern Embeddings)")]
+        VEC --> RAG["RAG Anomaly Agent\n(Root-Cause Diagnosis)"]
+        RAG --> UI["Streamlit Dashboard\n& Slack Waste Alerts"]
+    end
+```
+</details>
 
 ---
 

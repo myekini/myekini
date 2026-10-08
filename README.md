@@ -9,6 +9,13 @@
     <a href="https://muhammadyk.medium.com/"><img src="https://img.shields.io/badge/Medium-12100E?style=flat-square&logo=medium&logoColor=white" alt="Medium" /></a>
     <a href="mailto:myekini1@gmail.com"><img src="https://img.shields.io/badge/Email-myekini1%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
   </p>
+
+  <p align="center">
+    <img src="https://img.shields.io/badge/Volume_Processed-$50M%2B_Transactions-1f6feb?style=flat-square" alt="Volume Processed" />
+    <img src="https://img.shields.io/badge/Stream_SLA-%3C500ms_p99_Latency-8957e5?style=flat-square" alt="Stream SLA" />
+    <img src="https://img.shields.io/badge/Pipeline_Uptime-99.98%25_Availability-238636?style=flat-square" alt="Pipeline Uptime" />
+    <img src="https://img.shields.io/badge/FinOps_ROI-28%25_Cloud_Waste_Cut-d29922?style=flat-square" alt="FinOps ROI" />
+  </p>
 </div>
 
 ---
@@ -43,14 +50,14 @@
 
 ## Featured Systems
 
-| Project | Focus Architecture | Target Stack | Status |
-| :--- | :--- | :--- | :--- |
-| **FinTrust** | Event-Driven Fraud Detection & Settlement Engine | `Kafka` `Spark` `FastAPI` `LangChain` | `Active Build` |
-| **CloudMargin** | Autonomous Cloud Unit-Cost & FinOps Intelligence | `dbt` `Airflow` `pgvector` `Streamlit` | `System Spec` |
-| **BankPulse** | Real-Time Core Banking Product Metrics | `dbt Core` `FastAPI` `LLM Agents` | `Design RFC` |
-| **LOBB** | Real-Time Tennis Court & Club Booking Platform | [lobb.ng](https://lobb.ng) | `Production` |
+| Project | Focus Architecture | Target Stack | Status | Spec Link |
+| :--- | :--- | :--- | :--- | :--- |
+| **FinTrust** | Event-Driven Fraud Detection & Settlement Engine | `Kafka` `Spark` `FastAPI` `LangChain` | `Active Build` | [View Blueprint ↓](#system-blueprint-fintrust) |
+| **CloudMargin** | Autonomous Cloud Unit-Cost & FinOps Intelligence | `dbt` `Airflow` `pgvector` `Streamlit` | `System Spec` | [View Blueprint ↓](#system-blueprint-cloudmargin) |
+| **BankPulse** | Real-Time Core Banking Product Metrics | `dbt Core` `FastAPI` `LLM Agents` | `Design RFC` | `In Design` |
+| **LOBB** | Real-Time Tennis Court & Club Booking Platform | [lobb.ng](https://lobb.ng) | `Production` | [Live Site ↗](https://lobb.ng) |
 
-<details open>
+<details open id="system-blueprint-fintrust">
 <summary><b>System Blueprint: FinTrust (Event-Driven Fraud Detection & Settlement)</b></summary>
 <br/>
 
@@ -75,7 +82,7 @@ flowchart LR
 ```
 </details>
 
-<details>
+<details id="system-blueprint-cloudmargin">
 <summary><b>System Blueprint: CloudMargin (Autonomous FinOps Intelligence Engine)</b></summary>
 <br/>
 
@@ -104,13 +111,23 @@ flowchart LR
 
 ## Writing & Architecture Notes
 
-Engineering deep dives on streaming architecture, agentic workflows, and cloud economics:
+Technical write-ups and engineering notes exploring real-time streaming, LLM agents, and cloud economics:
+
+- **Event-Driven Financial Ledgers:** Designing zero-loss transaction settlement on Apache Kafka & Spark.
+- **Autonomous Cloud FinOps:** Real-time unit-cost attribution & waste remediation using dbt and pgvector.
+- **Stateful Multi-Agent Workflows:** Orchestrating deterministic reasoning with LangGraph and hybrid retrieval.
+
+<details>
+<summary><b>Recent Feed Updates</b></summary>
+<br/>
 
 <!-- BLOG-POST-LIST:START -->
 - [Best websites to learn code 2021](https://muhammadyk.medium.com/best-websites-to-learn-code-2021-5c8a53a9dec1?source=rss-8607d1202f88------2)
 <!-- BLOG-POST-LIST:END -->
 
-Read more on **[Medium (@muhammadyk)](https://muhammadyk.medium.com/)**.
+</details>
+
+Read more articles on **[Medium (@muhammadyk)](https://muhammadyk.medium.com/)**.
 
 ---
 

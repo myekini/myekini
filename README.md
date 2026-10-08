@@ -1,84 +1,87 @@
-<p align="center"> <a href="#"><img width="auto" height="100" src="assets/mybot.png" style="border-radius:50%"/></a></p>
+<div align="center">
 
-<h1 align="center">Hi 👋, I'm Muhammad Yekini</h1>
-<h3 align="center">Data Engineer | AI-Powered Systems | FinOps</h3>
+  <img src="assets/mybot.png" width="110" height="110" style="border-radius: 50%; border: 2px solid #30363d;" alt="Muhammad Yekini" />
 
-<p align="center"><i>"I build data pipelines that think."</i></p>
+  # Muhammad Yekini
+  ### Senior Data Engineer • AI Systems • FinOps
 
-I specialize in building real-time data infrastructure with AI integration. 5+ years building production systems across fintech and banking — WAYA Bank, Earnipay, Mobi Automation, Bincom Dev Center. Currently FinOps Analyst (freelance).
+  `"I build data pipelines that think."`
 
-- 🔭 Starting a 3-project portfolio Jul 27, 2026: **FinTrust** (fraud detection & reconciliation) → **CloudMargin** (AI-assisted cloud cost intelligence) → **BankPulse** (digital banking product analytics)
+  <br/>
 
-- 🚀 Also building **LOBB** ([lobb.ng](https://lobb.ng)) — a tennis booking system — and leading **STACC** ([getstacc.org](https://getstacc.org)), a data/tech community
-
-- 🌱 I'm currently learning **CrewAI, LangGraph, dbt, Advanced Spark**
-
-- 👯 I'm looking to collaborate on **AI-powered data engineering projects**
-
-- 💬 Ask me about **Kafka, Spark, Airflow, dbt, LangChain, RAG, pgvector, FastAPI, AWS, Docker**
-
-- 📝 I regularly write articles on [https://muhammadyk.medium.com/](https://muhammadyk.medium.com/)
-
-- 📫 How to reach me **myekini1@gmail.com**
+  <p align="center">
+    <a href="https://linkedin.com/in/myekini"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+    <a href="https://twitter.com/MohBuilds"><img src="https://img.shields.io/badge/X%20(Twitter)-000000?style=flat-square&logo=x&logoColor=white" alt="X" /></a>
+    <a href="https://muhammadyk.medium.com/"><img src="https://img.shields.io/badge/Medium-12100E?style=flat-square&logo=medium&logoColor=white" alt="Medium" /></a>
+    <a href="mailto:myekini1@gmail.com"><img src="https://img.shields.io/badge/Email-myekini1%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
+  </p>
+</div>
 
 ---
 
-### 🚀 Portfolio (starting July 27, 2026)
-
-| Project | Description | Stack | Status |
-|---------|-------------|-------|--------|
-| **FinTrust** | Real-time fraud detection & reconciliation | Kafka • Spark • ML • LangChain | Starting Jul 27, 2026 |
-| **CloudMargin** | AI-assisted cloud cost intelligence | dbt • Airflow • RAG • Streamlit | Sequenced after FinTrust |
-| **BankPulse** | Digital banking product analytics | dbt • Streamlit • LangChain | Decision point after CloudMargin |
-
-*Repos will be linked here once each project is live — no links yet since nothing has shipped.*
+### ⚡ Executive Summary
+- **Track Record:** 5+ years engineering high-throughput, fault-tolerant financial data systems across banking and fintech (**WAYA Bank**, **Earnipay**, **Mobi Automation**, **Bincom Dev Center**).
+- **Core Focus:** Merging distributed real-time pipelines (**Kafka**, **Spark**, **Airflow**, **dbt**) with autonomous AI & LLM architectures (**LangGraph**, **pgvector**, **RAG**).
+- **FinOps & Cloud Economics:** Cloud cost governance, unit economics optimization, and automated financial reconciliation.
+- **Ecosystem:** Founder at **[STACC](https://getstacc.org)** (Data & Tech Community) and creator of **[LOBB](https://lobb.ng)** (Sports Venue Booking Engine).
 
 ---
 
-### Blogs posts
+### 🛠️ Technical Stack & Architecture
+
+```
+Streaming & Real-Time  │ Kafka • Spark Streaming • FastAPI
+Warehousing & Modeling │ dbt • PostgreSQL • BigQuery • Redis
+AI & Multi-Agent Ops   │ LangChain • LangGraph • CrewAI • pgvector • RAG
+Cloud & Infrastructure │ AWS • GCP • Terraform • Docker • Linux
+FinOps & Intelligence  │ Cloud Cost Governance • Unit Economics • Anomaly Detection
+```
+
+<details open>
+<summary><b>Visual Tech Radar</b></summary>
+<br/>
+
+| Domain | Technologies |
+| :--- | :--- |
+| **Data Processing & Streaming** | ![Apache Kafka](https://img.shields.io/badge/Apache_Kafka-231F20?style=flat-square&logo=apache-kafka&logoColor=white) ![Apache Spark](https://img.shields.io/badge/Apache_Spark-E25A1C?style=flat-square&logo=apache-spark&logoColor=white) ![Apache Airflow](https://img.shields.io/badge/Apache_Airflow-017CEE?style=flat-square&logo=apache-airflow&logoColor=white) ![dbt](https://img.shields.io/badge/dbt-FF694B?style=flat-square&logo=dbt&logoColor=white) |
+| **AI, LLMs & Agents** | ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) ![Python](https://img.shields.io/badge/Python_3.11+-3776AB?style=flat-square&logo=python&logoColor=white) ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white) |
+| **Storage & Engines** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white) |
+| **Cloud & Infrastructure** | ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white) ![GCP](https://img.shields.io/badge/Google_Cloud-4285F4?style=flat-square&logo=google-cloud&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white) |
+
+</details>
+
+---
+
+### 🏗️ Featured Engineering Systems
+
+| Project | Focus Architecture | Target Stack | Status |
+| :--- | :--- | :--- | :--- |
+| **FinTrust** | Event-Driven Fraud Detection & Settlement Engine | `Kafka` `Spark` `FastAPI` `LangChain` | 🔨 `Active Build` |
+| **CloudMargin** | Autonomous Cloud Unit-Cost & FinOps Intelligence | `dbt` `Airflow` `pgvector` `Streamlit` | 📐 `Spec & Modeling` |
+| **BankPulse** | Real-Time Core Banking Product Metrics | `dbt Core` `FastAPI` `LLM Agents` | 💡 `Design Phase` |
+| **LOBB** | Real-Time Sports Venue Booking Engine | [lobb.ng](https://lobb.ng) | 🟢 `Active Product` |
+
+---
+
+### 📝 Writing & Technical Insights
+
+Engineering notes and deep dives into real-time data pipelines, AI systems, and FinOps on **[Medium (@muhammadyk)](https://muhammadyk.medium.com/)**.
+
 <!-- BLOG-POST-LIST:START -->
 - [Best websites to learn code 2021](https://muhammadyk.medium.com/best-websites-to-learn-code-2021-5c8a53a9dec1?source=rss-8607d1202f88------2)
 <!-- BLOG-POST-LIST:END -->
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://twitter.com/MohBuilds" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="MohBuilds" height="30" width="40" /></a>
-<a href="https://linkedin.com/in/myekini" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="myekini" height="30" width="40" /></a>
-<a href="https://stackoverflow.com/users/15603225" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/stack-overflow.svg" alt="15603225" height="30" width="40" /></a>
-<a href="https://kaggle.com/muhammadyekini" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/kaggle.svg" alt="muhammadyekini" height="30" width="40" /></a>
-<a href="https://instagram.com/MohBuilds" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="MohBuilds" height="30" width="40" /></a>
-<a href="https://medium.com/@muhammadyk" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/medium.svg" alt="@muhammadyk" height="30" width="40" /></a>
-<a href="https://www.hackerrank.com/myekini1" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/hackerrank.svg" alt="myekini1" height="30" width="40" /></a>
-<a href="https://www.leetcode.com/myekini" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/leet-code.svg" alt="myekini" height="30" width="40" /></a>
-</p>
+---
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> 
-<a href="https://kafka.apache.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-icon.svg" alt="kafka" width="40" height="40"/> </a>
-<a href="https://spark.apache.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/apache_spark/apache_spark-icon.svg" alt="spark" width="40" height="40"/> </a>
-<a href="https://airflow.apache.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/apacheairflow/apacheairflow-original.svg" alt="airflow" width="40" height="40"/> </a>
-<a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a>
-<a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a>
-<a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a>
-<a href="https://cloud.google.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="gcp" width="40" height="40"/> </a>
-<a href="https://www.terraform.io/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" alt="terraform" width="40" height="40"/> </a>
-<a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a>
-<a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="40" height="40"/> </a>
-<a href="https://redis.io" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original-wordmark.svg" alt="redis" width="40" height="40"/> </a>
-<a href="https://pytorch.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/pytorch/pytorch-icon.svg" alt="pytorch" width="40" height="40"/> </a>
-<a href="https://www.tensorflow.org" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="tensorflow" width="40" height="40"/> </a>
-<a href="https://www.langchain.com/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/126733545?s=200&v=4" alt="langchain" width="40" height="40"/> </a>
-<a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a>
-<a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a>
-</p>
+### 📊 GitHub Activity
 
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=myekini&show_icons=true&locale=en&layout=compact" alt="myekini" /></p>
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=myekini&show_icons=true&locale=en" alt="myekini" /></p>
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=myekini&" alt="myekini" /></p>
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=myekini&show_icons=true&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9" height="150" alt="GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=myekini&layout=compact&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9" height="150" alt="Top Languages" />
+</div>
 
+---
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=myekini&label=Profile%20views&color=0e75b6&style=flat" alt="myekini" /> </p>
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=myekini" alt="myekini" /></a> </p>
-
-<h3 align="left">Support:</h3>
-<p><a href="https://www.buymeacoffee.com/myekini1w"> <img align="left" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50" width="210" alt="myekini1w" /></a><a href="https://ko-fi.com/myekini"> <img align="left" src="https://cdn.ko-fi.com/cdn/kofi3.png?v=3" height="50" width="210" alt="myekini" /></a></p><br><br>
+<div align="center">
+  <sub>Let's build reliable distributed intelligence. Reach out via <a href="mailto:myekini1@gmail.com">myekini1@gmail.com</a></sub>
+</div>

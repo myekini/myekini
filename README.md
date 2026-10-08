@@ -1,12 +1,7 @@
 <div align="center">
-  <img src="assets/mybot.png" width="105" height="105" style="border-radius: 50%; border: 2px solid #30363d;" alt="Muhammad Yekini" />
+  <h1>Muhammad Yekini</h1>
 
-  # Muhammad Yekini
-  ### Senior Data Engineer • AI Systems • FinOps
-
-  `"I build data pipelines that think."`
-
-  <br/>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=21&pause=1200&color=58A6FF&center=true&vCenter=true&width=550&height=42&lines=I+build+data+pipelines+that+think.;Senior+Data+Engineer+%7C+Fintech+%26+Banking;Real-Time+Streaming+%7C+Kafka+%E2%80%A2+Spark;Autonomous+AI+Systems+%7C+LangGraph+%E2%80%A2+RAG;Cloud+Unit-Economics+%7C+FinOps+Governance" alt="Typing Animation" />
 
   <p align="center">
     <a href="https://linkedin.com/in/myekini"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
@@ -22,7 +17,7 @@
 - **Track Record:** 5+ years designing and operating mission-critical financial data pipelines across fintech and digital banking (**WAYA Bank**, **Earnipay**, **Mobi Automation**, **Bincom Dev Center**).
 - **Core Focus:** Distributed real-time stream processing (**Kafka**, **Spark Streaming**), resilient analytics engineering (**dbt**, **Airflow**), and autonomous AI agent systems (**LangGraph**, **pgvector**, **RAG**).
 - **FinOps & Cloud Economics:** Cloud cost governance, unit economics modeling, and automated reconciliation architectures.
-- **Ecosystem:** Founder of **[STACC](https://getstacc.org)** (Data & Tech Community) and creator of **[LOBB](https://lobb.ng)** (Sports Venue Booking Engine).
+- **Ecosystem:** Founder of **[STACC](https://getstacc.org)** (Data & Tech Community) and creator of **[LOBB](https://lobb.ng)** (Tennis Court & Club Booking Platform).
 
 ---
 
@@ -53,7 +48,7 @@
 | **FinTrust** | Event-Driven Fraud Detection & Settlement Engine | `Kafka` `Spark` `FastAPI` `LangChain` | `Active Build` |
 | **CloudMargin** | Autonomous Cloud Unit-Cost & FinOps Intelligence | `dbt` `Airflow` `pgvector` `Streamlit` | `System Spec` |
 | **BankPulse** | Real-Time Core Banking Product Metrics | `dbt Core` `FastAPI` `LLM Agents` | `Design RFC` |
-| **LOBB** | Real-Time Sports Venue Booking Engine | [lobb.ng](https://lobb.ng) | `Production` |
+| **LOBB** | Real-Time Tennis Court & Club Booking Platform | [lobb.ng](https://lobb.ng) | `Production` |
 
 ---
 

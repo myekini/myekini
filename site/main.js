@@ -1,7 +1,6 @@
 (() => {
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-  const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const sections = ['work', 'projects', 'about', 'contact'];
   const clock = $('[data-clock]');
   const tick = () => { clock.textContent = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Lagos' }) + ' WAT'; };
@@ -22,7 +21,8 @@
   $('.keys').hidden = !matchMedia('(hover: hover) and (pointer: fine)').matches;
   addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey || e.target.closest('input,textarea,select,button,[contenteditable="true"]')) return;
-    document.getElementById(sections[+e.key - 1])?.scrollIntoView({ behavior: motion.matches ? 'instant' : 'smooth' });
+    // Keyboard jumps are repeated actions, so they land instantly instead of animating
+    document.getElementById(sections[+e.key - 1])?.scrollIntoView({ behavior: 'instant' });
   });
   const revealRole = hash => {
     if (!['#finops-work', '#waya-work'].includes(hash)) return;

@@ -6,3 +6,6 @@
 .vercel
 .DS_Store
 Thumbs.db
+
+# Local design reviews and temporary browser profiles.
+/.impeccable/

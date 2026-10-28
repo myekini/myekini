@@ -5,7 +5,10 @@
   if (!host || !host.getContext) return;
   const box = host.parentElement;
   const img = box.querySelector('img');
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+  let still = motionPreference.matches;
+  // Touch devices use the real portrait without a hover interaction.
+  if (matchMedia('(hover: none)').matches) return;
   const RAMP = ' .,:;-=+*#%@';
   const INK = [232, 217, 176];
   const ACCENT = '#d69e2e';
@@ -151,15 +154,11 @@
     lens.y = lerp(lens.y, lens.ty, k);
     lens.r = lerp(lens.r, lens.on ? lens.R : 0, still ? 1 : 0.16);
     if (!lens.on && lens.r < 0.5) lens.r = 0;
-    if (!still && now - lastFlick > 110) {
-      lastFlick = now;
-      flick = Array.from({ length: 6 }, () => cells[Math.floor(Math.random() * cells.length)]);
-    }
     drawFrame(now);
     const moving = lens.on || lens.r > 0 || Math.abs(lens.x - lens.tx) > 0.3;
     if (!visible || document.hidden) return;
     if (moving) raf = requestAnimationFrame(loop);
-    else if (!still) idle = setTimeout(() => { idle = 0; kick(); }, 110);   // flicker only: ~9 fps
+    // No idle loop: the pipeline is the page's focal motion.
   }
   let idle = 0;
   const kick = () => {
@@ -167,6 +166,7 @@
     if (!raf) raf = requestAnimationFrame(loop);
   };
   document.addEventListener('visibilitychange', () => { if (!document.hidden) kick(); });
+  motionPreference.addEventListener('change', () => { still = motionPreference.matches; if (still) introDone = true; kick(); });
 
   function point(e) {
     const b = host.getBoundingClientRect();

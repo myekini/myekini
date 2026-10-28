@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Muhammad Yekini · Data Engineer, Cloud FinOps</title>
-<meta name="description" content="Data engineer building reconciliation and cloud cost-allocation pipelines for finance-heavy products, with LLM features that are tested like any other code.">
+<title>Muhammad Yekini · Data Engineer &amp; Cloud FinOps Analyst</title>
+<meta name="description" content="Muhammad Yekini, Data Engineer and Cloud FinOps Analyst. Reliable data pipelines, settlement reconciliation and traceable cloud costs.">
 <meta name="author" content="Muhammad Yekini">
 <meta name="theme-color" content="#0d0e0f">
 <!-- SITE_URL: change https://muhammadyekini.com here and in robots.txt and sitemap.xml if you buy a different domain -->
 <link rel="canonical" href="https://muhammadyekini.com/">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://muhammadyekini.com/">
-<meta property="og:title" content="Muhammad Yekini · Data Engineer, Cloud FinOps">
+<meta property="og:title" content="Muhammad Yekini · Data Engineer &amp; Cloud FinOps Analyst">
 <meta property="og:description" content="Reconciliation and cost-allocation pipelines for finance-heavy products.">
 <meta property="og:image" content="https://muhammadyekini.com/og.png">
 <meta property="og:image:width" content="1200">
@@ -23,7 +23,7 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Muhammad Yekini","jobTitle":"Data Engineer","url":"https://muhammadyekini.com/","email":"mailto:myekini1@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Lagos","addressCountry":"NG"},"alumniOf":"Federal University of Technology Minna","sameAs":["https://github.com/myekini","https://linkedin.com/in/myekini","https://muhammadyk.medium.com/"]}
+{"@context":"https://schema.org","@type":"Person","name":"Muhammad Yekini","jobTitle":"Data Engineer","url":"https://muhammadyekini.com/","email":"mailto:myekini1@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Lagos","addressCountry":"NG"},"alumniOf":"Federal University of Technology Minna","sameAs":["https://github.com/myekini","https://linkedin.com/in/myekini"]}
 </script>
 <link rel="preload" href="/assets/portrait.webp" as="image" fetchpriority="high">
 <link rel="preload" href="/assets/portrait-ascii.webp" as="image">
@@ -48,36 +48,54 @@
 <main id="main" class="wrap">
 
 <section id="top" class="hero">
-  <figure class="portrait" data-intro="300">
+  <div class="hero-text">
+    <h1>Muhammad <br>Yekini<span class="accent">.</span></h1>
+    <p class="role">Data Engineer <span aria-hidden="true">/</span> Cloud FinOps Analyst</p>
+    <p class="lede">I build reliable data pipelines and make cloud costs traceable.</p>
+    <div class="hero-actions"><a class="action primary" href="#work">Explore my work <span aria-hidden="true">↘</span></a><a class="action" href="mailto:myekini1@gmail.com">Email Muhammad <span aria-hidden="true">↗</span></a></div>
+    <p class="status"><span class="dot"></span>Open to remote roles and relocation</p>
+  </div>
+  <figure class="portrait">
     <img src="/assets/portrait.webp" alt="Muhammad Yekini" width="560" height="700" fetchpriority="high" decoding="async">
-    <canvas data-portrait="/assets/portrait-ascii.webp" role="img" aria-label="ASCII portrait of Muhammad Yekini"></canvas>
+    <canvas data-portrait="/assets/portrait-ascii.webp" aria-hidden="true"></canvas>
     <figcaption class="hint" data-portrait-hint aria-hidden="true"></figcaption>
   </figure>
-  <div class="hero-text">
-  <div class="prompt"><span class="accent">~$</span><span class="cmd" data-typed>whoami</span></div>
-  <h1 data-intro="900">muhammad yekini</h1>
-  <p class="role" data-intro="1000">data engineer · cloud finops · reconciliation and cost-allocation pipelines</p>
-  <p class="lede" data-intro="1100">I build data systems for finance-heavy products, and I build LLM features into them that are tested like any other code.</p>
-  <div class="latest" data-intro="1200">
-    <div class="k">LATEST</div>
-    <p>Caught about $135K of manual-refresh errors in a 35-account AWS cost model before they reached leadership.</p>
+</section>
+
+<section class="pipeline-section" aria-labelledby="pipeline-title" data-pipeline>
+  <div class="pipeline-heading"><h2 id="pipeline-title">From raw records.<br>To numbers you can trust.</h2><p>Two kinds of work. The same discipline:<br>trace the source, test the logic, check the output.</p></div>
+  <div class="pipeline-controls" hidden data-flow-controls>
+    <div class="flow-modes" role="group" aria-label="Pipeline example"><button type="button" aria-pressed="true" data-flow-mode="data">Data engineering</button><button type="button" aria-pressed="false" data-flow-mode="cost">Cloud FinOps</button></div>
+    <div class="flow-playback"><button type="button" data-flow-replay>Replay flow</button><button type="button" data-flow-pause disabled>Pause</button></div>
   </div>
-  <div class="links" data-intro="1300">
-    <span class="status"><span class="dot"></span>open to remote roles and relocation</span>
-    <a href="mailto:myekini1@gmail.com">email</a>
-    <a href="https://github.com/myekini">github</a>
-    <a href="https://linkedin.com/in/myekini">linkedin</a>
+  <div class="flow-canvas">
+    <div class="flow-caption"><span data-flow-name>reconciliation.pipeline</span><span>illustrative workflow / not a live system</span></div>
+    <ol class="flow-stages">
+      <li data-stage><span class="stage-key">[ source ]</span><h3 data-stage-title>Payment records</h3><p data-stage-body>Provider exports<br>Bank statements</p><span class="stage-state" data-stage-state>input</span></li>
+      <li data-stage><span class="stage-key">[ ingest ]</span><h3 data-stage-title>Bring together</h3><p data-stage-body>Batch loads<br>Streaming events</p><span class="stage-state" data-stage-state>ingest</span></li>
+      <li data-stage><span class="stage-key">[ model ]</span><h3 data-stage-title>Reconcile</h3><p data-stage-body>Match records<br>Isolate exceptions</p><span class="stage-state" data-stage-state>transform</span></li>
+      <li data-stage><span class="stage-key">[ check ]</span><h3 data-stage-title>Validate</h3><p data-stage-body>Check totals<br>Review exceptions</p><span class="stage-state" data-stage-state>validate</span></li>
+      <li data-stage><span class="stage-key">[ serve ]</span><h3 data-stage-title>Make usable</h3><p data-stage-body>Warehouse<br>Dispute portal</p><span class="stage-state" data-stage-state>output</span></li>
+    </ol>
+    <div class="flow-log"><span aria-hidden="true">&gt;_</span><p data-flow-log>Follow the records from source to checked output.</p><span data-flow-progress>5 connected stages</span></div>
   </div>
-  </div>
+  <p class="pipeline-note">A simplified view of my approach. Professional results below; public builds and their current status further down.</p>
 </section>
 
 <section id="work" class="section">
   <div class="section-head" data-reveal>
-    <h2>## work</h2>
-    <span class="hint">click a row to expand</span>
+    <h2>Selected work</h2>
+    <span class="hint">Data engineering / Cloud FinOps</span>
   </div>
 
-  <details class="job" name="work" open data-reveal>
+  <div class="selected-work">
+    <article class="work-story"><h3>Less manual reconciliation.<br>Faster dispute resolution.</h3><p class="story-domain">Data engineering · WAYA Bank</p><p>Automated reconciliation across 33+ payment providers and bank statements, with a dispute portal and a consolidated warehouse.</p><dl class="story-results"><div><dt>Manual reconciliation workload</dt><dd>−80%</dd></div><div><dt>Dispute resolution time</dt><dd>48h → &lt;24h</dd></div></dl><a href="#waya-work">Read the work details <span aria-hidden="true">↘</span></a></article>
+    <article class="work-story"><h3>Cloud costs explained.<br>Reporting errors caught.</h3><p class="story-domain">Cloud FinOps · freelance</p><p>Monthly cost reporting across 35+ AWS accounts, reconciling source exports to the reporting model and investigating anomalies.</p><dl class="story-results"><div><dt>Manual-refresh errors caught</dt><dd>~$135K</dd></div><div><dt>Refresh and validation time</dt><dd>~60% less</dd></div></dl><a href="#finops-work">Read the work details <span aria-hidden="true">↘</span></a></article>
+  </div>
+  <h3 class="experience-heading">Experience, in detail</h3>
+  <p class="experience-hint">Expand a role for responsibilities and results.</p>
+
+  <details id="finops-work" class="job" name="work" open data-reveal>
     <summary><span class="dates">nov 2025 – now</span><span><span class="title">Cloud FinOps Analyst</span><span class="org">freelance · sap workloads on aws</span></span><span class="sign" aria-hidden="true"></span></summary>
     <ul class="points">
       <li><b>35+ accounts</b><span>Own monthly cost reporting: 400+ cost lines and 4+ years of daily history. Reconcile Cost Explorer exports to the Power BI model and root-cause anomalies.</span></li>
@@ -96,7 +114,7 @@
     </ul>
   </details>
 
-  <details class="job" name="work" data-reveal>
+  <details id="waya-work" class="job" name="work" data-reveal>
     <summary><span class="dates">oct 2024 – oct 2025</span><span><span class="title">Data Engineer (Consultant)</span><span class="org">waya bank · remote</span></span><span class="sign" aria-hidden="true"></span></summary>
     <ul class="points">
       <li><b>-80%</b><span>Manual reconciliation workload, from an automated system and dispute portal across 33+ payment providers and bank statements.</span></li>
@@ -133,35 +151,21 @@
 </section>
 
 <section id="projects" class="section">
-  <h2 data-reveal>## projects</h2>
-  <p class="intro" data-reveal>Each one is built from a problem already solved in client work, so it can be shown without breaking confidentiality. Data is synthetic with planted faults, and results are measured against the plants. Status is stated as it stands.</p>
+  <h2 data-reveal>Public builds</h2>
+  <p class="intro" data-reveal>Public projects based on problems from my professional work. Implementation is still ahead: the repositories currently contain designs and evaluation plans. Planned datasets are synthetic, with planted faults for testing.</p>
 
   <article class="feature" data-reveal>
-    <div class="feature-bar"><span>01 · featured</span><span class="accent">● in development</span></div>
+    <div class="feature-bar"><span>CostTrail / current focus</span><span class="accent">● in development</span></div>
     <div class="feature-body">
       <h3>CostTrail <span class="kind">cloud cost allocation</span></h3>
       <p class="question">Can engineering and finance trace an allocated cost back to its source and see why it changed?</p>
       <dl class="notes">
-        <div><dt>data</dt><dd>AWS billing data in FOCUS 1.4, modelled into billed and amortized cost.</dd></div>
-        <div><dt>rule</dt><dd>Shared cost is allocated to teams and totals are preserved to the cent.</dd></div>
-        <div><dt>llm</dt><dd>A variance explainer: the pipeline computes the change, the model explains it, code checks every number.</dd></div>
+        <div><dt>data</dt><dd>Planned: AWS billing data in FOCUS 1.4, modelled into billed and amortized cost.</dd></div>
+        <div><dt>rule</dt><dd>Planned: allocate shared cost to teams while preserving totals to the cent.</dd></div>
+        <div><dt>llm</dt><dd>Planned: a variance explainer grounded in computed changes, with code checking every number.</dd></div>
       </dl>
 
-      <div class="alloc" data-alloc>
-        <div class="alloc-head"><span><span class="accent">$</span> allocate --rule usage-weight --preserve-totals</span><span class="faint">illustrative figures</span></div>
-        <div class="alloc-total"><label for="alloc-total">shared cost</label><output data-total-out>$48,200.00</output></div>
-        <input id="alloc-total" type="range" min="5000" max="100000" step="100" value="48200" data-total>
-        <div class="alloc-bar" aria-hidden="true" data-bar>
-          <i style="width:46%;background:#e6e6e3"></i><i style="width:28%;background:#8a8f98"></i><i style="width:18%;background:#4a4e55"></i><i style="width:8%;background:#d69e2e"></i>
-        </div>
-        <div class="alloc-rows">
-          <div class="alloc-row"><label for="w-platform"><i style="background:#e6e6e3"></i>platform</label><input id="w-platform" type="range" min="0" max="100" step="1" value="46" data-w><output>$22,172.00</output></div>
-          <div class="alloc-row"><label for="w-data"><i style="background:#8a8f98"></i>data</label><input id="w-data" type="range" min="0" max="100" step="1" value="28" data-w><output>$13,496.00</output></div>
-          <div class="alloc-row"><label for="w-payments"><i style="background:#4a4e55"></i>payments</label><input id="w-payments" type="range" min="0" max="100" step="1" value="18" data-w><output>$8,676.00</output></div>
-          <div class="alloc-row"><label for="w-shared"><i style="background:#d69e2e"></i>shared</label><input id="w-shared" type="range" min="0" max="100" step="1" value="8" data-w><output>$3,856.00</output></div>
-        </div>
-        <div class="alloc-check" data-check aria-live="polite"><span>sum(allocations) == shared_cost</span><span data-check-text>$48,200.00 ✓</span></div>
-      </div>
+      <p class="build-note">Design and evaluation plan available on GitHub. A working implementation and measured evaluation results are not yet available.</p>
 
       <div class="feature-foot">
         <span>python · dbt · duckdb · focus 1.4</span>
@@ -174,20 +178,20 @@
     <li data-reveal>
       <a href="https://github.com/myekini/tieout">
         <span class="i">02</span>
-        <span><span class="name">Tieout <span class="kind">settlement reconciliation</span></span><span class="about">Multi-provider settlement matching with an exception queue, idempotent reruns and an LLM triage assistant.</span></span>
+        <span><span class="name">Tieout <span class="kind">settlement reconciliation</span></span><span class="about">Planned: multi-provider settlement matching with an exception queue, idempotent reruns and an LLM triage assistant.</span></span>
         <span class="st muted">● design stage</span>
       </a>
     </li>
     <li data-reveal>
       <a href="https://github.com/myekini/liftcheck">
         <span class="i">03</span>
-        <span><span class="name">Liftcheck <span class="kind">a/b test analysis</span></span><span class="about">A/B test analysis with power, guardrails and variance reduction, plus an LLM readout writer grounded in the computed statistics.</span></span>
+        <span><span class="name">Liftcheck <span class="kind">a/b test analysis</span></span><span class="about">Planned: A/B test analysis with power, guardrails and variance reduction, plus an LLM readout writer grounded in the computed statistics.</span></span>
         <span class="st faint">● planned</span>
       </a>
     </li>
   </ul>
 
-  <p class="loop-head" data-reveal># every llm feature follows the same loop</p>
+  <p class="loop-head" data-reveal>The rule for LLM features</p>
   <ol class="loop" data-reveal>
     <li>the pipeline computes the facts</li>
     <li>the llm explains or proposes</li>
@@ -199,10 +203,10 @@
 </section>
 
 <section id="about" class="section">
-  <h2 data-reveal>## about</h2>
+  <h2 data-reveal>Beyond the pipelines</h2>
   <div class="about-grid">
     <div class="bio" data-reveal>
-      <p>Muhammad Yekini is a data engineer based in Lagos. He has spent nearly five years building data systems at fintech and banking companies including WAYA Bank and Earnipay, and works as a freelance Cloud FinOps analyst for an enterprise AWS estate. He founded LOBB, a booking platform for tennis coaching, and leads STACC, a data and tech community.</p>
+      <p>I’m based in Lagos. My work spans data systems at fintech and banking companies including WAYA Bank and Earnipay, and freelance Cloud FinOps analysis for an enterprise AWS estate. I founded LOBB, a booking platform for tennis coaching, and lead STACC, a data and tech community.</p>
       <p>B.Tech, Mathematics and Statistics, Federal University of Technology Minna, 2019. KaggleX BIPOC Mentorship Program 2023, selected from 4,000+ applicants, and KaggleX Career Development Scholarship 2023. Google Africa Developer Scholarship, Google and Andela, 2021.</p>
     </div>
   </div>
@@ -223,7 +227,7 @@
 </section>
 
 <section id="contact" class="section contact">
-  <h2 data-reveal>## contact</h2>
+  <h2 data-reveal>Let’s talk.</h2>
   <p class="big" data-reveal>Hiring for data engineering, or reviewing a cloud bill?</p>
   <div class="mail" data-reveal>
     <span class="accent">~$</span><span class="muted">mail</span>
@@ -231,7 +235,7 @@
     <button class="copy" type="button" data-copy="myekini1@gmail.com" hidden>copy</button>
   </div>
   <footer class="foot">
-    <span>projects use synthetic data · client work is unnamed</span><span class="keys" hidden>press 1–4 to jump</span>
+    <span>Public builds plan to use synthetic data · confidential client details omitted</span><span class="keys" hidden>press 1–4 to jump</span>
   </footer>
 </section>
 

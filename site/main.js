@@ -1,121 +1,107 @@
 (() => {
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const ease = 'cubic-bezier(.16,1,.3,1)';
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const sections = ['work', 'projects', 'about', 'contact'];
-
-  // Lagos clock
   const clock = $('[data-clock]');
-  const tick = () => {
-    clock.textContent = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Lagos' }) + ' wat';
-  };
+  const tick = () => { clock.textContent = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Lagos' }) + ' WAT'; };
   tick();
   setInterval(tick, 20000);
-
-  // Active nav item
-  const navLinks = $$('.top nav a');
+  const header = $('.top');
+  const resizeHeader = () => document.documentElement.style.setProperty('--header-height', header.offsetHeight + 'px');
+  resizeHeader();
+  new ResizeObserver(resizeHeader).observe(header);
   const onScroll = () => {
     let active = '';
-    for (const id of sections) {
-      const el = document.getElementById(id);
-      if (el && el.getBoundingClientRect().top < innerHeight * 0.4) active = id;
-    }
-    navLinks.forEach(a => a.setAttribute('aria-current', a.hash === '#' + active ? 'true' : 'false'));
+    for (const id of sections) if (document.getElementById(id).getBoundingClientRect().top < innerHeight * 0.4) active = id;
+    $$('.top nav a').forEach(a => a.setAttribute('aria-current', a.hash === '#' + active ? 'location' : 'false'));
   };
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-
-  // Keys 1-4 jump to sections
   $('.keys').hidden = false;
   addEventListener('keydown', e => {
-    if (e.metaKey || e.ctrlKey || e.altKey || /INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName || '')) return;
-    const el = document.getElementById(sections[+e.key - 1]);
-    if (el) el.scrollIntoView({ behavior: still ? 'auto' : 'smooth' });
+    if (e.metaKey || e.ctrlKey || e.altKey || e.target.closest('input,textarea,select,button,[contenteditable="true"]')) return;
+    document.getElementById(sections[+e.key - 1])?.scrollIntoView({ behavior: motion.matches ? 'instant' : 'smooth' });
   });
-
-  // Typed prompt
-  const typed = $('[data-typed]');
-  const text = typed.textContent;
-  const caret = document.createElement('span');
-  caret.className = 'caret';
-  if (still) {
-    typed.after(caret);
-  } else {
-    let i = 0;
-    typed.textContent = '';
-    typed.after(caret);
-    const id = setInterval(() => { typed.textContent = text.slice(0, ++i); if (i >= text.length) clearInterval(id); }, 55);
-  }
-
-  // Cost allocator: largest-remainder rounding so allocations sum to the cent
-  const alloc = $('[data-alloc]');
-  const totalIn = $('[data-total]', alloc);
-  const weights = $$('[data-w]', alloc);
-  const bars = $$('[data-bar] i', alloc);
-  const money = c => '$' + (c / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const allocate = () => {
-    const cents = +totalIn.value * 100;
-    const w = weights.map(el => +el.value);
-    const sw = w.reduce((a, b) => a + b, 0);
-    const raw = w.map(x => (sw ? x / sw : 0) * cents);
-    const fl = raw.map(Math.floor);
-    let rem = (sw ? cents : 0) - fl.reduce((a, b) => a + b, 0);
-    raw.map((r, i) => [r - fl[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (rem > 0) { fl[i]++; rem--; } });
-    const sum = fl.reduce((a, b) => a + b, 0);
-    const ok = sw > 0 && sum === cents;
-    $('[data-total-out]', alloc).textContent = money(cents);
-    weights.forEach((el, i) => {
-      el.nextElementSibling.textContent = money(fl[i]);
-      bars[i].style.width = (sw ? w[i] / sw * 100 : 0).toFixed(1) + '%';
-    });
-    $('[data-check]', alloc).classList.toggle('bad', !ok);
-    $('[data-check-text]', alloc).textContent = ok ? money(sum) + ' ✓' : 'set at least one weight';
-  };
-  alloc.addEventListener('input', allocate);
-  allocate();
-
-  // Copy email
+  $$('a[href="#finops-work"],a[href="#waya-work"]').forEach(link => link.addEventListener('click', () => { $(link.hash).open = true; }));
+  if (location.hash === '#finops-work' || location.hash === '#waya-work') $(location.hash).open = true;
   const copy = $('[data-copy]');
   if (navigator.clipboard) {
     copy.hidden = false;
-    let t;
-    copy.addEventListener('click', () => {
-      navigator.clipboard.writeText(copy.dataset.copy).then(() => {
-        copy.textContent = 'copied ✓';
+    copy.setAttribute('aria-live', 'polite');
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(copy.dataset.copy);
+        copy.textContent = 'Copied';
         copy.classList.add('done');
-        clearTimeout(t);
-        t = setTimeout(() => { copy.textContent = 'copy'; copy.classList.remove('done'); }, 1800);
-      });
+        setTimeout(() => { copy.textContent = 'Copy'; copy.classList.remove('done'); }, 1800);
+      } catch { copy.textContent = 'Use the email link'; }
     });
   }
-
-  // Entrance and scroll-reveal motion
-  if (still || document.visibilityState !== 'visible' || !Element.prototype.animate) return;
-  $$('[data-intro]').forEach(el => el.animate(
-    [{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }],
-    { duration: 700, delay: +el.dataset.intro || 0, easing: ease, fill: 'backwards' }));
-  const hidden = new Map();
-  $$('[data-reveal]').forEach(el => {
-    if (el.getBoundingClientRect().top < innerHeight * 0.92) return;
-    hidden.set(el, el.animate([{ opacity: 0, transform: 'translateY(12px)' }], { duration: 1, fill: 'forwards' }));
-  });
-  const show = (el, anim) => {
-    const h = hidden.get(el);
-    if (!h) return;
-    hidden.delete(el);
-    if (anim) el.animate([{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }], { duration: 600, easing: ease, fill: 'backwards' });
-    h.cancel();
+  const pipeline = $('[data-pipeline]');
+  if (!pipeline) return;
+  const examples = {
+    data: {
+      name: 'reconciliation.pipeline',
+      titles: ['Payment records', 'Bring together', 'Reconcile', 'Validate', 'Make usable'],
+      bodies: [['Provider exports', 'Bank statements'], ['Batch loads', 'Streaming events'], ['Match records', 'Isolate exceptions'], ['Check totals', 'Review exceptions'], ['Warehouse', 'Dispute portal']],
+      logs: ['Start with provider records and bank statements.', 'Bring records into a common pipeline.', 'Match records and separate exceptions for review.', 'Validate the result before it reaches reporting.', 'Checked records support reporting and dispute resolution.']
+    },
+    cost: {
+      name: 'cloud-cost.pipeline',
+      titles: ['Cloud billing', 'Bring together', 'Model costs', 'Validate', 'Make usable'],
+      bodies: [['AWS cost exports', 'Account history'], ['Monthly reporting', 'Source reconciliation'], ['Amortization', 'Offset logic'], ['Check totals', 'Investigate anomalies'], ['Cost reporting', 'Commitment analysis']],
+      logs: ['Start with AWS cost exports and account history.', 'Reconcile source exports with the reporting model.', 'Apply amortization and offsets to avoid double counting.', 'Investigate anomalies and validate the reported costs.', 'Traceable costs support reporting and commitment decisions.']
+    }
   };
-  const check = () => {
-    hidden.forEach((_, el) => { if (el.getBoundingClientRect().top < innerHeight * 0.92) show(el, true); });
-    if (!hidden.size) off();
+  const stages = $$('[data-stage]', pipeline);
+  const pause = $('[data-flow-pause]', pipeline);
+  const log = $('[data-flow-log]', pipeline);
+  const progress = $('[data-flow-progress]', pipeline);
+  let mode = 'data', step = -1, timer = 0, running = false, visible = false, started = false;
+  $('[data-flow-controls]', pipeline).hidden = false;
+  const stopTimer = () => { clearTimeout(timer); timer = 0; };
+  const render = () => {
+    stages.forEach((stage, i) => {
+      stage.classList.toggle('is-active', i === step && running);
+      stage.classList.toggle('is-complete', i <= step);
+      $('[data-stage-state]', stage).textContent = i < step || step === 4 ? 'complete' : i === step ? 'processing' : 'waiting';
+    });
+    pipeline.classList.toggle('flow-running', running && visible && !document.hidden && !motion.matches);
+    pause.disabled = step >= 4 || motion.matches || !started;
+    pause.textContent = running ? 'Pause' : 'Resume';
+    progress.textContent = step < 0 ? '5 connected stages' : `${step + 1} / 5 stages`;
+    log.textContent = step < 0 ? 'Follow the records from source to checked output.' : examples[mode].logs[step];
   };
-  const all = () => { [...hidden.keys()].forEach(el => show(el, false)); off(); };
-  const off = () => { removeEventListener('scroll', check); removeEventListener('resize', check); removeEventListener('beforeprint', all); };
-  addEventListener('scroll', check, { passive: true });
-  addEventListener('resize', check);
-  addEventListener('beforeprint', all);
-  // Anchor jumps land on hidden elements; reveal them
-  addEventListener('hashchange', check);
+  const schedule = () => {
+    stopTimer();
+    if (!running || !visible || document.hidden || motion.matches) return;
+    timer = setTimeout(() => {
+      step++;
+      if (step >= 4) { step = 4; running = false; }
+      render(); schedule();
+    }, 1450);
+  };
+  const play = () => { started = true; step = motion.matches ? 4 : 0; running = !motion.matches; render(); schedule(); };
+  const setMode = next => {
+    mode = next;
+    const example = examples[mode];
+    $('[data-flow-name]', pipeline).textContent = example.name;
+    stages.forEach((stage, i) => {
+      $('[data-stage-title]', stage).textContent = example.titles[i];
+      $('[data-stage-body]', stage).replaceChildren(document.createTextNode(example.bodies[i][0]), document.createElement('br'), document.createTextNode(example.bodies[i][1]));
+    });
+    $$('[data-flow-mode]', pipeline).forEach(button => button.setAttribute('aria-pressed', String(button.dataset.flowMode === mode)));
+    play();
+  };
+  $$('[data-flow-mode]', pipeline).forEach(button => button.addEventListener('click', () => setMode(button.dataset.flowMode)));
+  $('[data-flow-replay]', pipeline).addEventListener('click', play);
+  pause.addEventListener('click', () => { running = !running; render(); schedule(); });
+  new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    if (visible && !started) play(); else { render(); schedule(); }
+  }, { threshold: 0.15 }).observe(pipeline);
+  document.addEventListener('visibilitychange', () => { render(); schedule(); });
+  motion.addEventListener('change', () => { if (motion.matches) { stopTimer(); step = 4; running = false; render(); } });
+  render();
 })();

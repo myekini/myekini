@@ -45,7 +45,7 @@
   const edges = [], packets = [];
   let mode = 'data', fault = 'clean', result = engine.run(), elapsed = 0, phase = -1;
   let playing = false, inView = false, started = false, raf = 0, lastNow = null, announcement = false;
-  const money = cents => new Intl.NumberFormat('en-US', { style: 'currency', currency: result.currency, minimumFractionDigits: 2 }).format(cents / 100);
+  const money = cents => new Intl.NumberFormat('en-US', { style: 'currency', currency: result.currency, currencyDisplay: 'narrowSymbol', minimumFractionDigits: 2 }).format(cents / 100);
   const createSVG = (tag, attrs) => { const el = document.createElementNS(svgNS, tag); Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value)); return el; };
   connections.forEach(([from, to], i) => {
     const path = createSVG('path', { class: 'arch-edge', 'marker-end': 'url(#wire-arrow)', fill: 'none' });

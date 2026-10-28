@@ -32,10 +32,7 @@ h1, h2, h3, p { margin: 0; }
 .skip:focus { left: 8px; }
 
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 32px); }
-.sans { font-family: var(--sans); }
 .accent { color: var(--accent); }
-.faint { color: var(--faint); }
-.muted { color: var(--muted); }
 
 /* header */
 .top { position: sticky; top: 0; z-index: 10; background: rgba(13, 14, 15, .86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
@@ -95,7 +92,6 @@ h1, h2, h3, p { margin: 0; }
 /* about */
 .about-grid { margin-top: 28px; max-width: 640px; }
 .bio p { font-family: var(--sans); font-size: 17px; line-height: 1.7; color: var(--text-body); text-wrap: pretty; }
-.bio p + p { font-size: 15px; color: var(--muted); margin-top: 16px; }
 .ls { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 32px; margin-top: 44px; font-size: 13px; }
 .ls .cmd { color: var(--faint); margin-bottom: 10px; }
 .ventures { list-style: none; margin: 0; padding: 0; }
@@ -142,8 +138,6 @@ button { font: inherit; }
 .story-results dt { color: var(--muted); font-family: var(--sans); font-size: 14px; }
 .story-results dd { margin: 0; white-space: nowrap; font-size: 17px; font-variant-numeric: tabular-nums; }
 .work-story > a { font-family: var(--sans); font-size: 14px; display: inline-flex; min-height: 44px; align-items: center; gap: 14px; }
-.experience-heading { font-family: var(--sans); font-size: 24px; font-weight: 500; }
-.experience-hint { font-family: var(--sans); color: var(--muted); font-size: 14px; margin: 10px 0 20px; }
 .job { scroll-margin-top: 20px; }
 .points { max-width: 900px; }
 .intro { max-width: 70ch; margin-top: 20px; }
@@ -152,7 +146,7 @@ button { font: inherit; }
 .ls { gap: 64px; }
 .mail a, .copy { min-height: 44px; display: inline-flex; align-items: center; }
 .copy { padding: 10px 14px; }
-.contact .big { max-width: 780px; }
+.contact .big { max-width: 640px; margin-top: 16px; font-size: clamp(21px, 2.6vw, 28px); line-height: 1.4; letter-spacing: -.01em; color: var(--text-body); }
 @media (max-width: 960px) {
   .hero { grid-template-columns: minmax(0, 1fr) 220px; gap: 32px; }
   .selected-work { gap: 32px; }

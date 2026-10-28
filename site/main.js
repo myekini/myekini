@@ -18,7 +18,8 @@
   };
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-  $('.keys').hidden = false;
+  // Number-key navigation only helps where there is a keyboard and a fine pointer
+  $('.keys').hidden = !matchMedia('(hover: hover) and (pointer: fine)').matches;
   addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey || e.target.closest('input,textarea,select,button,[contenteditable="true"]')) return;
     document.getElementById(sections[+e.key - 1])?.scrollIntoView({ behavior: motion.matches ? 'instant' : 'smooth' });

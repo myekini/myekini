@@ -161,7 +161,7 @@ button { font: inherit; }
   .hero h1 { font-size: clamp(45px, 9vw, 64px); }
   .hero-text { grid-column: 1 / -1; grid-row: 1; }
   .hero h1 { padding-right: 110px; }
-  .portrait { grid-column: 2; grid-row: 1; width: 112px; pointer-events: none; }
+  .portrait { grid-column: 2; grid-row: 1; width: 112px; }
   .portrait .hint { display: none; }
   .role { margin-top: 24px; }
   .lede { max-width: 30ch; }

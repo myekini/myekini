@@ -7,8 +7,6 @@
   const img = box.querySelector('img');
   const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
   let still = motionPreference.matches;
-  // Touch devices use the real portrait without a hover interaction.
-  if (matchMedia('(hover: none)').matches) return;
   const RAMP = ' .,:;-=+*#%@';
   const INK = [232, 217, 176];
   const ACCENT = '#d69e2e';
@@ -18,7 +16,7 @@
 
   let W, H, dpr, cols, rows, cw, ch, cells = [];
   let lens = { x: 0, y: 0, tx: 0, ty: 0, r: 0, R: 0, on: false };
-  let introStart = 0, introDone = still, raf = 0, visible = true, flick = [];
+  let introStart = 0, introDone = still, raf = 0, visible = true;
 
   const lerp = (a, b, t) => a + (b - a) * t;
 
@@ -57,7 +55,7 @@
   function setup() {
     dpr = Math.min(2, devicePixelRatio || 1);
     W = box.clientWidth; H = Math.round(W * 1.25);
-    cols = Math.round(W / 2.6);
+    cols = Math.round(W / (W < 140 ? 1.5 : 2.6));
     cw = W / cols; ch = cw * 1.6; rows = Math.floor(H / ch);
     for (const c of [host, base]) { c.width = W * dpr; c.height = H * dpr; }
     host.style.height = H + 'px';
@@ -130,19 +128,8 @@
     } else {
       ctx.drawImage(base, 0, 0, W, H);
     }
-    // A few characters flicker so the portrait feels alive
-    if (!still && flick.length) {
-      font(ctx);
-      for (const c of flick) {
-        if (r > 0.5 && Math.hypot(c.cx - lens.x, c.cy - lens.y) < r * 1.75) continue;
-        ctx.clearRect(c.x, c.y, cw, ch);
-        ctx.fillStyle = ink(Math.min(1, c.a + 0.25));
-        ctx.fillText(RAMP[Math.max(1, Math.min(RAMP.length - 1, c.k + (Math.random() < 0.5 ? -1 : 1)))], c.x, c.y);
-      }
-    }
   }
 
-  let lastFlick = 0;
   function loop(now) {
     raf = 0;
     if (!introDone) {
@@ -155,7 +142,7 @@
     lens.r = lerp(lens.r, lens.on ? lens.R : 0, still ? 1 : 0.16);
     if (!lens.on && lens.r < 0.5) lens.r = 0;
     drawFrame(now);
-    const moving = lens.on || lens.r > 0 || Math.abs(lens.x - lens.tx) > 0.3;
+    const moving = !still && (Math.abs(lens.x - lens.tx) > 0.3 || Math.abs(lens.y - lens.ty) > 0.3 || Math.abs(lens.r - (lens.on ? lens.R : 0)) > 0.3);
     if (!visible || document.hidden) return;
     if (moving) raf = requestAnimationFrame(loop);
     // No idle loop: the pipeline is the page's focal motion.
@@ -173,11 +160,12 @@
     lens.tx = e.clientX - b.left; lens.ty = e.clientY - b.top;
     if (!lens.on || lens.r === 0) { lens.x = lens.tx; lens.y = lens.ty; }
   }
-  host.addEventListener('pointerenter', e => { point(e); lens.on = true; kick(); });
-  host.addEventListener('pointermove', e => { point(e); lens.on = true; kick(); });
+  host.addEventListener('pointerenter', e => { if (e.pointerType !== 'mouse') return; lens.R = W * 0.17; point(e); lens.on = true; kick(); });
+  host.addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; point(e); lens.on = true; kick(); });
   host.addEventListener('pointerleave', () => { lens.on = false; kick(); });
-  host.addEventListener('pointerdown', e => { point(e); lens.on = true; kick(); });
+  host.addEventListener('pointerdown', e => { lens.R = W * (e.pointerType === 'mouse' ? 0.17 : 0.38); point(e); lens.on = true; kick(); });
   host.addEventListener('pointerup', e => { if (e.pointerType !== 'mouse') setTimeout(() => { lens.on = false; kick(); }, 900); });
+  host.addEventListener('pointercancel', () => { lens.on = false; kick(); });
 
   new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) kick(); }).observe(host);
   let rt;
@@ -199,5 +187,5 @@
     if (hint) hint.textContent = matchMedia('(hover: hover)').matches ? 'hover to look closer' : 'tap to look closer';
     introStart = performance.now();
     kick();
-  });
+  }).catch(() => { /* Keep the original photo if an image or font cannot load. */ });
 })();

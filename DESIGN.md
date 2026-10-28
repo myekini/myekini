@@ -138,7 +138,7 @@ Education, the LLM principle, technical inspection and implementation rationale 
 Three open, ruled list rows show repository links, concise purposes and explicit statuses. The first status uses amber; later statuses use muted text. Project titles use medium-weight sans-serif at 22px. Below 560px, status moves beneath the project text. Descriptions identify designs and evaluation plans as available and implementations as pending.
 ### Portrait
 
-The real photograph is the accessible fallback. On hover-capable devices, a canvas samples the portrait into a character grid and a pointer lens reveals the photograph beneath it. The intro resolves once; there is no idle animation loop. Reduced motion skips the intro and makes lens changes immediate. Touch devices retain the photograph, and mobile layout disables the hover interaction.
+The real photograph is the accessible fallback. On desktop and touch devices, a canvas samples the portrait into a character grid. Hover or tap reveals the photograph beneath an amber lens; touch uses a larger lens that closes after release. Small portraits use a finer character grid. The intro resolves once; there is no idle animation loop, and a stationary lens stops redrawing. Reduced motion skips the intro and makes lens changes immediate. Mobile preserves native vertical scrolling.
 
 ### Contact
 

@@ -95,9 +95,9 @@ The display and section-heading tokens describe desktop defaults. The profession
 
 ## Layout
 
-The centered outer canvas is 1120px including fluid horizontal padding from 20px to 32px. Desktop hero content uses a flexible text column beside a 290px portrait with a 60px gap. Selected work has two equal columns separated by 64px. Narrative measures are local to their purpose: work stories use up to 50ch, biography up to 65ch, and section introductions up to 70ch.
+The centered outer canvas is 1120px including fluid horizontal padding from 20px to 32px. Desktop hero content uses a flexible text column beside a 360px portrait with a 32px gap. Selected work has two equal columns separated by 64px. Narrative measures are local to their purpose: work stories use up to 50ch, biography up to 65ch, and section introductions up to 70ch.
 
-Sections use 80px vertical padding and a top rule. At 960px, the hero portrait reduces to 220px and major column gaps tighten. At 760px, sections reduce to 52px padding, work stories stack, and the architecture diagram changes from a horizontal merge and fork to a vertical merge and fork. Hero text owns the reading order; its portrait becomes a 112px supporting image at the upper right. At 560px, the portrait reduces to 90px, navigation spans its own row, experience dates move above the title and metric descriptions stack beneath their labels.
+Sections use 80px vertical padding and a top rule. At 960px, the hero portrait reduces to 280px and major column gaps tighten. At 760px, sections reduce to 52px padding, work stories stack, and the architecture diagram changes from a horizontal merge and fork to a vertical merge and fork. Hero text owns the reading order; its portrait becomes a 140px supporting image at the upper right. At 560px, the portrait reduces to 112px (96px below 380px), navigation spans its own row, experience dates move above the title and metric descriptions stack beneath their labels.
 
 Navigation, actions and pipeline controls have at least 44px interactive height; hero actions use 48px. Anchor clearance follows the measured sticky-header height rather than a fixed desktop assumption.
 

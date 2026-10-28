@@ -44,7 +44,7 @@ h1, h2, h3, p { margin: 0; }
 .top nav span, .clock { color: var(--faint); }
 
 /* hero */
-.hero { padding: 72px 0 68px; display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 60px; align-items: center; }
+.hero { padding: 72px 0 68px; display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 32px; align-items: center; }
 .hero-text { min-width: 0; }
 .hero h1 { font-family: var(--sans); font-size: clamp(56px, 6.8vw, 88px); line-height: .98; letter-spacing: -.035em; font-weight: 500; color: var(--text-strong); }
 .role { font-family: var(--sans); font-size: clamp(17px, 2vw, 22px); color: var(--text); margin-top: 26px; line-height: 1.6; }
@@ -153,15 +153,15 @@ button { font: inherit; }
 .copy { padding: 10px 14px; }
 .contact .big { max-width: 640px; margin-top: 16px; font-size: clamp(21px, 2.6vw, 28px); line-height: 1.4; letter-spacing: -.01em; color: var(--text-body); }
 @media (max-width: 960px) {
-  .hero { grid-template-columns: minmax(0, 1fr) 220px; gap: 32px; }
+  .hero { grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; }
   .selected-work { gap: 32px; }
 }
 @media (max-width: 760px) {
-  .hero { grid-template-columns: minmax(0, 1fr) 112px; gap: 20px; align-items: start; padding: 44px 0 48px; }
+  .hero { grid-template-columns: minmax(0, 1fr) 140px; gap: 20px; align-items: start; padding: 44px 0 48px; }
   .hero h1 { font-size: clamp(45px, 9vw, 64px); }
   .hero-text { grid-column: 1 / -1; grid-row: 1; }
-  .hero h1 { padding-right: 110px; }
-  .portrait { grid-column: 2; grid-row: 1; width: 112px; }
+  .hero h1 { padding-right: 156px; min-height: 175px; }
+  .portrait { grid-column: 2; grid-row: 1; width: 140px; }
   .portrait .hint { display: none; }
   .role { margin-top: 24px; }
   .lede { max-width: 30ch; }
@@ -175,9 +175,9 @@ button { font: inherit; }
   .top nav { width: 100%; justify-content: space-between; gap: 4px; }
   .top nav a { padding: 0 4px; font-size: 12px; }
   .top nav a:first-child { padding-left: 0; }
-  .hero h1 { font-size: clamp(44px, 10vw, 56px); padding-right: 84px; }
-  .hero { grid-template-columns: minmax(0, 1fr) 90px; }
-  .portrait { width: 90px; }
+  .hero h1 { font-size: clamp(40px, 10vw, 56px); padding-right: 124px; min-height: 140px; }
+  .hero { grid-template-columns: minmax(0, 1fr) 112px; }
+  .portrait { width: 112px; }
   .role { font-size: 17px; }
   .role span { margin: 0 3px; }
   .lede { font-size: 23px; }
@@ -195,6 +195,12 @@ button { font: inherit; }
 
 
 /* The default reading path stays short; supporting detail expands in place. */
+@media (max-width: 380px) {
+  .hero { grid-template-columns: minmax(0, 1fr) 96px; }
+  .portrait { width: 96px; }
+  .hero h1 { font-size: clamp(32px, 10vw, 38px); padding-right: 108px; min-height: 120px; }
+}
+
 summary { cursor: pointer; font-family: var(--sans); min-height: 44px; padding: 12px 0; line-height: 1.5; }
 summary:hover { color: var(--accent); }
 .case-note { font-family: var(--sans); font-size: 14px; }

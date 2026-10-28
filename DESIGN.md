@@ -38,6 +38,7 @@ typography:
 rounded:
   square: "0"
   copy: "4px"
+  architecture-node: "8px"
 spacing:
   small: "8px"
   medium: "16px"
@@ -65,7 +66,7 @@ components:
 
 The established direction is an editorial engineering portfolio in a near-black and amber world. Large, restrained sans-serif headings and readable narrative sit alongside monospaced labels, numbered navigation and terminal-like details. The ASCII portrait is the distinctive identity asset.
 
-Data Engineering and Cloud FinOps receive equal visual weight in the professional title, example selector and paired work stories. The surrounding page remains still while the illustrative pipeline explains a finite progression from sources to checked outputs.
+Data Engineering and Cloud FinOps receive equal visual weight in the professional title, example selector and paired work stories. The surrounding page remains still while a seven-node architecture diagram carries document-shaped packets from sources through checks to reporting or human review. Supporting explanations expand in place, keeping the default reading path short.
 
 **Key Characteristics:**
 
@@ -96,7 +97,7 @@ The display and section-heading tokens describe desktop defaults. The profession
 
 The centered outer canvas is 1120px including fluid horizontal padding from 20px to 32px. Desktop hero content uses a flexible text column beside a 290px portrait with a 60px gap. Selected work has two equal columns separated by 64px. Narrative measures are local to their purpose: work stories use up to 50ch, biography up to 65ch, and section introductions up to 70ch.
 
-Sections use 80px vertical padding and a top rule. At 960px, the hero portrait reduces to 220px and major column gaps tighten. At 760px, sections reduce to 52px padding, work stories stack, and the pipeline changes from five horizontal columns to a vertical flow. Hero text owns the reading order; its portrait becomes a 112px supporting image at the upper right. At 560px, the portrait reduces to 90px, navigation spans its own row, experience dates move above the title and metric descriptions stack beneath their labels.
+Sections use 80px vertical padding and a top rule. At 960px, the hero portrait reduces to 220px and major column gaps tighten. At 760px, sections reduce to 52px padding, work stories stack, and the architecture diagram changes from a horizontal merge and fork to a vertical merge and fork. Hero text owns the reading order; its portrait becomes a 112px supporting image at the upper right. At 560px, the portrait reduces to 90px, navigation spans its own row, experience dates move above the title and metric descriptions stack beneath their labels.
 
 Navigation, actions and pipeline controls have at least 44px interactive height; hero actions use 48px. Anchor clearance follows the measured sticky-header height rather than a fixed desktop assumption.
 
@@ -106,7 +107,7 @@ The system uses tonal layering and fine borders, without box shadows. The sticky
 
 ## Shapes
 
-Primary actions, pipeline surfaces and project containers are square. The copy control uses a small rounded corner. The availability dot is circular. Dashed stage rules, bracketed stage labels and character arrows give the pipeline its ASCII-inspired form without enclosing each stage in a separate card.
+Primary actions, pipeline surfaces and project containers are square. The copy control uses a small rounded corner. The availability dot is circular. Architecture nodes use 8px corners and fine borders. Line icons, source filenames and document-shaped SVG packets distinguish sources, processing and outcomes. Native select controls use 4px corners.
 
 ## Components
 
@@ -114,29 +115,34 @@ Primary actions, pipeline surfaces and project containers are square. The copy c
 
 The primary action uses amber fill with dark text. The secondary action is transparent with a muted border; hover turns the border amber. Links use underlines with a 4px offset except in the header and dedicated action treatments. Keyboard focus has a 2px amber outline with 3px offset. Header navigation uses muted text, brighter current-location text and amber hover. Number keys 1 through 4 progressively enhance section navigation.
 
-### Illustrative pipeline
+### Synthetic architecture demonstration
 
-A caption, ordered five-stage flow and log share a single bordered sunk surface. Both examples use source, ingest, model, check and serve stages. The reconciliation example moves payment records through matching and validation to a warehouse and dispute portal. The cloud-cost example moves billing records through amortization, offsets and validation to reporting and commitment analysis. These are illustrative workflows, explicitly labelled as such.
+Seven nodes form a directed graph: two sources merge into ingestion, then pass through modelling and validation before forking to reporting and human review. Desktop uses five columns and two rows. At 760px and below, paired sources sit above three centered processing nodes, with paired outputs below. SVG wires follow the nodes on resize. Nodes use raised black, gray borders, line icons, sans-serif titles and monospaced source labels.
 
-The equally styled mode buttons use an amber underline and faint amber fill for selection. Replay restarts the chosen flow; Pause becomes Resume while paused. The flow starts once on entering the viewport, advances every 1450ms, and stops after the fifth stage. Offscreen or hidden-document states suspend advancement. Active arrows move in the direction of the responsive layout. Completed stages use amber rules and green status text.
+Equal-weight mode buttons select payment reconciliation or cloud-cost allocation. An amber underline and faint amber fill mark selection. A labelled native select offers a clean run plus two faults per example: duplicate payment or missing settlement; double-counted charge or missing owner. Replay restarts the run. Pause becomes Resume during an unfinished run and disappears at completion or with reduced motion.
 
-With reduced motion, all stages render complete and static, and pause is disabled. Without JavaScript, the authored reconciliation path and explanatory content remain readable, while enhancement controls remain hidden.
+Document-shaped SVG packets travel along wires over a finite seven-second run in five causal phases. The bounded requestAnimationFrame clock suspends while paused, offscreen or in a hidden document. Active nodes use amber; passed wires and completed states use green; held exceptions use amber. Text distinguishes waiting, processing, paused, published and held outcomes. A separate polite status region announces manually triggered completion.
 
-### Selected work and experience
+Results show published and held record counts and currency-formatted totals: NGN for payments and USD for cloud costs. Outcomes come from a deterministic synthetic engine checking matches, duplicates, missing owners, input conservation and cent-preserving shared allocation. A collapsed inspector exposes record traces and checks; a nested disclosure explains integer minor units and largest-remainder allocation.
 
-Selected work uses open editorial columns, each with a domain label, narrative, ruled metric rows and a link to work details. Native `details` and `summary` elements provide experience disclosure. Summary rows align dates, role and a plus/minus sign; expanded metrics align beside their explanation on desktop. The FinOps role starts open. Work-story links open the corresponding experience disclosure.
+Reduced motion immediately presents a completed static outcome without travelling packets. Without JavaScript, authored payment nodes and explanations remain readable; enhancement controls and the computed inspector remain hidden. This browser demonstration is separate from the planned public builds. PDF imagery represents supplied synthetic extracted statement rows; no PDF parsing or live account connection is claimed.
+
+### Selected work and progressive disclosure
+
+Selected work retains two equal editorial columns, with domain labels, narrative and ruled metric rows. Each story has a native disclosure for its approach and a link to the full role. Full experience is a closed outer disclosure containing six native role disclosures. Role links and matching URL fragments open enclosing disclosures before navigation.
+
+Education, the LLM principle, technical inspection and implementation rationale also use native disclosures. Summary targets are at least 44px high and use amber hover. The full-experience summary has a top rule, muted supporting label and amber plus/minus sign. Supporting detail expands in place while the default reading path stays short.
 
 ### Public builds
 
-The featured build uses a square bordered container with a raised title bar, narrative body, definition-list notes and repository footer. Other builds use numbered ruled links. Current status and planned capabilities are explicit text, not implied by polished product imagery.
-
+Three open, ruled list rows show repository links, concise purposes and explicit statuses. The first status uses amber; later statuses use muted text. Project titles use medium-weight sans-serif at 22px. Below 560px, status moves beneath the project text. Descriptions identify designs and evaluation plans as available and implementations as pending.
 ### Portrait
 
 The real photograph is the accessible fallback. On hover-capable devices, a canvas samples the portrait into a character grid and a pointer lens reveals the photograph beneath it. The intro resolves once; there is no idle animation loop. Reduced motion skips the intro and makes lens changes immediate. Touch devices retain the photograph, and mobile layout disables the hover interaction.
 
 ### Contact
 
-A terminal-style email row keeps the mail link directly available. Copy appears only when the clipboard API is available, reports success in green and keeps failure guidance visible in its label.
+A simple email row keeps the mail link directly available. The footer includes location, GitHub and LinkedIn links. Copy appears only when the clipboard API is available, reports success in green and keeps failure guidance visible in its label.
 
 ## Do's and Don'ts
 
@@ -144,6 +150,6 @@ A terminal-style email row keeps the mail link directly available. Copy appears 
 - **Do** retain equal visual emphasis for Data Engineering and Cloud FinOps.
 - **Do** keep essential text, native disclosures and contact access usable without animation or JavaScript.
 - **Do** keep workflow status readable as text as well as color.
-- **Don't** present the illustrative pipeline as a live system or a client architecture.
+- **Don't** present the synthetic demonstration as a live client system, a client architecture or a PDF parser.
 - **Don't** use fabricated screenshots or finished-product presentation to imply that planned public builds are complete.
 - **Don't** add scattered entrance choreography or continuous idle portrait flicker.

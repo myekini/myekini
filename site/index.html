@@ -22,12 +22,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/pipeline.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Muhammad Yekini","jobTitle":"Data Engineer","url":"https://muhammadyekini.com/","email":"mailto:myekini1@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Lagos","addressCountry":"NG"},"alumniOf":"Federal University of Technology Minna","sameAs":["https://github.com/myekini","https://linkedin.com/in/myekini"]}
 </script>
 <link rel="preload" href="/assets/portrait.webp" as="image" fetchpriority="high">
 <link rel="preload" href="/assets/portrait-ascii.webp" as="image">
 <script src="/main.js" defer></script>
+<script src="/pipeline-engine.js" defer></script>
+<script src="/pipeline.js" defer></script>
 <script src="/portrait.js" defer></script>
 </head>
 <body>
@@ -49,7 +52,7 @@
 
 <section id="top" class="hero">
   <div class="hero-text">
-    <h1>Muhammad <br>Yekini<span class="accent">.</span></h1>
+    <h1>Muhammad  <br>Yekini<span class="accent">.</span></h1>
     <p class="role">Data Engineer <span aria-hidden="true">/</span> Cloud FinOps Analyst</p>
     <p class="lede">I build reliable data pipelines and make cloud costs traceable.</p>
     <div class="hero-actions"><a class="action primary" href="#work">Explore my work <span aria-hidden="true">↘</span></a><a class="action" href="mailto:myekini1@gmail.com">Email Muhammad <span aria-hidden="true">↗</span></a></div>
@@ -62,24 +65,32 @@
   </figure>
 </section>
 
-<section class="pipeline-section" aria-labelledby="pipeline-title" data-pipeline>
-  <div class="pipeline-heading"><h2 id="pipeline-title">From raw records.<br>To numbers you can trust.</h2><p>Two kinds of work. The same discipline:<br>trace the source, test the logic, check the output.</p></div>
+<section id="demo" class="pipeline-section" aria-labelledby="pipeline-title" data-pipeline>
+  <div class="pipeline-heading"><h2 id="pipeline-title">Follow the data.</h2><p>Watch records move. Try a fault to see what gets held.</p></div>
   <div class="pipeline-controls" hidden data-flow-controls>
-    <div class="flow-modes" role="group" aria-label="Pipeline example"><button type="button" aria-pressed="true" data-flow-mode="data">Data engineering</button><button type="button" aria-pressed="false" data-flow-mode="cost">Cloud FinOps</button></div>
-    <div class="flow-playback"><button type="button" data-flow-replay>Replay flow</button><button type="button" data-flow-pause disabled>Pause</button></div>
+    <div class="flow-modes" role="group" aria-label="Choose an example"><button type="button" aria-pressed="true" data-flow-mode="data">Data engineering</button><button type="button" aria-pressed="false" data-flow-mode="cost">Cloud FinOps</button></div>
+    <div class="scenario-control"><label for="flow-scenario">Try a scenario</label><select id="flow-scenario" data-flow-scenario><option value="clean">Clean run</option><option value="duplicate">Duplicate payment</option><option value="missing">Missing settlement</option></select></div>
   </div>
   <div class="flow-canvas">
-    <div class="flow-caption"><span data-flow-name>reconciliation.pipeline</span><span>illustrative workflow / not a live system</span></div>
-    <ol class="flow-stages">
-      <li data-stage><span class="stage-key">[ source ]</span><h3 data-stage-title>Payment records</h3><p data-stage-body>Provider exports<br>Bank statements</p><span class="stage-state" data-stage-state>input</span></li>
-      <li data-stage><span class="stage-key">[ ingest ]</span><h3 data-stage-title>Bring together</h3><p data-stage-body>Batch loads<br>Streaming events</p><span class="stage-state" data-stage-state>ingest</span></li>
-      <li data-stage><span class="stage-key">[ model ]</span><h3 data-stage-title>Reconcile</h3><p data-stage-body>Match records<br>Isolate exceptions</p><span class="stage-state" data-stage-state>transform</span></li>
-      <li data-stage><span class="stage-key">[ check ]</span><h3 data-stage-title>Validate</h3><p data-stage-body>Check totals<br>Review exceptions</p><span class="stage-state" data-stage-state>validate</span></li>
-      <li data-stage><span class="stage-key">[ serve ]</span><h3 data-stage-title>Make usable</h3><p data-stage-body>Warehouse<br>Dispute portal</p><span class="stage-state" data-stage-state>output</span></li>
-    </ol>
-    <div class="flow-log"><span aria-hidden="true">&gt;_</span><p data-flow-log>Follow the records from source to checked output.</p><span data-flow-progress>5 connected stages</span></div>
+    <div class="flow-caption"><span data-flow-name>Payment reconciliation</span><span class="flow-playback" hidden data-playback><button type="button" data-flow-replay>Replay</button><button type="button" data-flow-pause disabled>Pause</button></span></div>
+    <div class="arch-diagram" data-diagram>
+      <svg class="arch-wires" aria-hidden="true" data-wires><defs><marker id="wire-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M1 1 7 4 1 7" fill="none" stroke="currentColor" stroke-width="1.2"/></marker></defs><g data-edges></g><g data-packets></g></svg>
+      <div class="arch-nodes" role="list" aria-label="Sources, processing, checks and outputs">
+        <div class="arch-node node-source-a" data-node="source-a" role="listitem"><svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h4M9 12h6M9 16h6"/></svg><h3 data-node-title>Transactions</h3><p data-node-detail>Payment events</p><span class="node-meta" data-node-meta>payments.json</span><span class="node-status" data-node-status></span></div>
+        <div class="arch-node node-source-b" data-node="source-b" role="listitem"><svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h4M9 12h6M9 16h6"/></svg><h3 data-node-title>Bank statement</h3><p data-node-detail>Settlement records</p><span class="node-meta" data-node-meta>statement.pdf</span><span class="node-status" data-node-status></span></div>
+        <div class="arch-node node-ingest" data-node="ingest" role="listitem"><svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16l-6 7v6l-4 3v-9z"/></svg><h3 data-node-title>Read & normalize</h3><p data-node-detail>Keep source references</p><span class="node-meta" data-node-meta>structured rows</span><span class="node-status" data-node-status></span></div>
+        <div class="arch-node node-model" data-node="model" role="listitem"><svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h6l4 10h6M4 17h6l4-10h6"/><path d="m17 4 3 3-3 3m0 4 3 3-3 3"/></svg><h3 data-node-title>Match payments</h3><p data-node-detail>Compare IDs + amounts</p><span class="node-meta" data-node-meta>matching rules</span><span class="node-status" data-node-status></span></div>
+        <div class="arch-node node-check" data-node="check" role="listitem"><svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6z"/><path d="m8 12 3 3 5-6"/></svg><h3 data-node-title>Validate</h3><p data-node-detail>Check before publishing</p><span class="node-meta" data-node-meta>totals + duplicates</span><span class="node-status" data-node-status></span></div>
+        <div class="arch-node node-output" data-node="output" role="listitem"><svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3v18h17M8 16v-4m5 4V7m5 9v-6"/></svg><h3 data-node-title>Reporting</h3><p data-node-detail>Matched records only</p><span class="node-meta" data-node-meta>checked output</span><span class="node-status" data-node-status></span></div>
+        <div class="arch-node node-review" data-node="review" role="listitem"><svg class="node-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14v17H5zM9 2h6v4H9zM9 11h6m-6 4h3"/></svg><h3 data-node-title>Human review</h3><p data-node-detail>Hold the exceptions</p><span class="node-meta" data-node-meta>nothing silently fixed</span><span class="node-status" data-node-status></span></div>
+      </div>
+    </div>
+    <div class="flow-log"><p data-flow-log>Transactions and statements come together. Matched records reach reporting; exceptions go to review.</p><span data-flow-progress>Illustrative flow</span></div>
+    <div class="demo-result" hidden data-demo-result><div><h3 data-result-title></h3><p data-result-description></p></div><dl><div><dt>Published</dt><dd data-published></dd></div><div><dt>Held for review</dt><dd data-held></dd></div></dl></div>
   </div>
-  <p class="pipeline-note">A simplified view of my approach. Professional results below; public builds and their current status further down.</p>
+  <p class="pipeline-note">Synthetic data, real checks in your browser. The diagram illustrates an approach, not a client architecture.</p>
+  <p class="sr-only" role="status" aria-live="polite" data-flow-announcement></p>
+  <details class="demo-inspector" hidden data-inspector><summary>Inspect a record and its checks</summary><div class="inspector-body"><div class="trace-control"><label for="trace-record">Trace a record</label><select id="trace-record" data-trace-select></select></div><ol class="record-trace" data-record-trace></ol><h3>Checks on this run</h3><ul class="check-list" data-check-list></ul><p class="inspector-note">The PDF is a visual example; statement rows are supplied as synthetic extracted data. This demo does not parse PDFs or connect to live accounts.</p><details class="decision-note"><summary>Why the demo works this way</summary><p>Amounts use integer minor units, cents or kobo, so rounding stays testable. Shared costs use largest-remainder allocation to preserve the total. Duplicate records and missing matches or owners go to review instead of being silently repaired. Those are choices implemented in this demo.</p><a href="https://github.com/myekini/myekini/blob/main/site/pipeline-engine.js">Read the demo logic on GitHub</a></details></div></details>
 </section>
 
 <section id="work" class="section">
@@ -89,13 +100,12 @@
   </div>
 
   <div class="selected-work">
-    <article class="work-story"><h3>Less manual reconciliation.<br>Faster dispute resolution.</h3><p class="story-domain">Data engineering · WAYA Bank</p><p>Automated reconciliation across 33+ payment providers and bank statements, with a dispute portal and a consolidated warehouse.</p><dl class="story-results"><div><dt>Manual reconciliation workload</dt><dd>−80%</dd></div><div><dt>Dispute resolution time</dt><dd>48h → &lt;24h</dd></div></dl><a href="#waya-work">Read the work details <span aria-hidden="true">↘</span></a></article>
-    <article class="work-story"><h3>Cloud costs explained.<br>Reporting errors caught.</h3><p class="story-domain">Cloud FinOps · freelance</p><p>Monthly cost reporting across 35+ AWS accounts, reconciling source exports to the reporting model and investigating anomalies.</p><dl class="story-results"><div><dt>Manual-refresh errors caught</dt><dd>~$135K</dd></div><div><dt>Refresh and validation time</dt><dd>~60% less</dd></div></dl><a href="#finops-work">Read the work details <span aria-hidden="true">↘</span></a></article>
+    <article class="work-story"><h3>Reconcile payments. <br>Resolve disputes faster.</h3><p class="story-domain">Data engineering · WAYA Bank</p><p>Automated reconciliation across 33+ payment providers and bank statements, with a dispute portal and a consolidated warehouse.</p><dl class="story-results"><div><dt>Manual reconciliation workload</dt><dd>−80%</dd></div><div><dt>Dispute resolution time</dt><dd>48h → &lt;24h</dd></div></dl><details class="case-note"><summary>How I approached it</summary><p>Automated reconciliation across 33+ payment providers and bank statements. Consolidated 50+ microservices into a PostgreSQL warehouse, with Airflow batch loads and Kafka streaming for high-priority tables.</p><p>The result: 80% less manual reconciliation work and dispute resolution reduced from 48 hours to under 24 hours.</p><a href="#waya-work">Full role details</a></details></article>
+    <article class="work-story"><h3>Trace cloud costs. <br>Catch reporting errors.</h3><p class="story-domain">Cloud FinOps · freelance</p><p>Monthly cost reporting across 35+ AWS accounts, reconciling source exports to the reporting model and investigating anomalies.</p><dl class="story-results"><div><dt>Manual-refresh errors caught</dt><dd>~$135K</dd></div><div><dt>Refresh and validation time</dt><dd>~60% less</dd></div></dl><details class="case-note"><summary>What sat behind the results</summary><p>I reconcile Cost Explorer exports to the reporting model and investigate anomalies across 35+ AWS accounts.</p><p>For reservations and marketplace offers, I designed daily amortization and offset logic to remove lump-sum double counting. Separately, I caught about $135K of manual-refresh errors before they reached leadership.</p><a href="#finops-work">Full role details</a></details></article>
   </div>
-  <h3 class="experience-heading">Experience, in detail</h3>
-  <p class="experience-hint">Expand a role for responsibilities and results.</p>
+  <details class="experience-disclosure" id="experience"><summary>Full experience <span>Six roles across data, finance and automation</span></summary>
 
-  <details id="finops-work" class="job" name="work" open data-reveal>
+  <details id="finops-work" class="job" name="work" data-reveal>
     <summary><span class="dates">nov 2025 – now</span><span><span class="title">Cloud FinOps Analyst</span><span class="org">freelance · sap workloads on aws</span></span><span class="sign" aria-hidden="true"></span></summary>
     <ul class="points">
       <li><b>35+ accounts</b><span>Own monthly cost reporting: 400+ cost lines and 4+ years of daily history. Reconcile Cost Explorer exports to the Power BI model and root-cause anomalies.</span></li>
@@ -148,71 +158,31 @@
       <li><b>-25%</b><span>Manual entry time from automating customer onboarding data extraction with Selenium and BeautifulSoup. Errors down 30%.</span></li>
     </ul>
   </details>
+  </details>
 </section>
 
 <section id="projects" class="section">
-  <h2 data-reveal>Public builds</h2>
-  <p class="intro" data-reveal>Public projects based on problems from my professional work. Implementation is still ahead: the repositories currently contain designs and evaluation plans. Planned datasets are synthetic, with planted faults for testing.</p>
-
-  <article class="feature" data-reveal>
-    <div class="feature-bar"><span>CostTrail / current focus</span><span class="accent">● in development</span></div>
-    <div class="feature-body">
-      <h3>CostTrail <span class="kind">cloud cost allocation</span></h3>
-      <p class="question">Can engineering and finance trace an allocated cost back to its source and see why it changed?</p>
-      <dl class="notes">
-        <div><dt>data</dt><dd>Planned: AWS billing data in FOCUS 1.4, modelled into billed and amortized cost.</dd></div>
-        <div><dt>rule</dt><dd>Planned: allocate shared cost to teams while preserving totals to the cent.</dd></div>
-        <div><dt>llm</dt><dd>Planned: a variance explainer grounded in computed changes, with code checking every number.</dd></div>
-      </dl>
-
-      <p class="build-note">Design and evaluation plan available on GitHub. A working implementation and measured evaluation results are not yet available.</p>
-
-      <div class="feature-foot">
-        <span>python · dbt · duckdb · focus 1.4</span>
-        <a href="https://github.com/myekini/costtrail">myekini/costtrail ↗</a>
-      </div>
-    </div>
-  </article>
-
-  <ul class="plist">
-    <li data-reveal>
-      <a href="https://github.com/myekini/tieout">
-        <span class="i">02</span>
-        <span><span class="name">Tieout <span class="kind">settlement reconciliation</span></span><span class="about">Planned: multi-provider settlement matching with an exception queue, idempotent reruns and an LLM triage assistant.</span></span>
-        <span class="st muted">● design stage</span>
-      </a>
-    </li>
-    <li data-reveal>
-      <a href="https://github.com/myekini/liftcheck">
-        <span class="i">03</span>
-        <span><span class="name">Liftcheck <span class="kind">a/b test analysis</span></span><span class="about">Planned: A/B test analysis with power, guardrails and variance reduction, plus an LLM readout writer grounded in the computed statistics.</span></span>
-        <span class="st faint">● planned</span>
-      </a>
-    </li>
+  <h2>What I’m building</h2>
+  <p class="intro">Public projects inspired by the work. Designs and evaluation plans are available; implementations are pending.</p>
+  <ul class="build-list">
+    <li><div><h3><a href="https://github.com/myekini/costtrail">CostTrail <span aria-hidden="true">↗</span></a></h3><p>Trace shared cloud costs back to their source.</p></div><span class="build-status">In development</span></li>
+    <li><div><h3><a href="https://github.com/myekini/tieout">Tieout <span aria-hidden="true">↗</span></a></h3><p>Match settlements and review payment exceptions.</p></div><span class="build-status">Design stage</span></li>
+    <li><div><h3><a href="https://github.com/myekini/liftcheck">Liftcheck <span aria-hidden="true">↗</span></a></h3><p>Read experiments with statistical checks and guardrails.</p></div><span class="build-status">Planned</span></li>
   </ul>
-
-  <p class="loop-head" data-reveal>The rule for LLM features</p>
-  <ol class="loop" data-reveal>
-    <li>the pipeline computes the facts</li>
-    <li>the llm explains or proposes</li>
-    <li>code checks every number</li>
-    <li>a human approves any change to data</li>
-    <li>every step is logged</li>
-    <li>a small evaluation set scores it</li>
-  </ol>
+  <details class="principle-note"><summary>My rule for LLM features</summary><p>The pipeline computes the facts. The model explains them. Code checks every number, a human approves data changes, each step is logged, and an evaluation set scores the result.</p></details>
 </section>
 
 <section id="about" class="section">
-  <h2 data-reveal>Beyond the pipelines</h2>
+  <h2 data-reveal>A little about me</h2>
   <div class="about-grid">
     <div class="bio" data-reveal>
-      <p>I’m based in Lagos. My work spans data systems at fintech and banking companies including WAYA Bank and Earnipay, and freelance Cloud FinOps analysis for an enterprise AWS estate. I founded LOBB, a booking platform for tennis coaching, and lead STACC, a data and tech community.</p>
-      <p>B.Tech, Mathematics and Statistics, Federal University of Technology Minna, 2019. KaggleX BIPOC Mentorship Program 2023, selected from 4,000+ applicants, and KaggleX Career Development Scholarship 2023. Google Africa Developer Scholarship, Google and Andela, 2021.</p>
+      <p>I’m based in Lagos, with experience across fintech, banking and enterprise cloud costs. Outside that work, I founded LOBB for tennis coach bookings and lead STACC, a data and tech community.</p>
+      <details class="background-note"><summary>Education and scholarships</summary><p>B.Tech, Mathematics and Statistics, Federal University of Technology Minna, 2019. KaggleX BIPOC Mentorship Program 2023, selected from 4,000+ applicants, and KaggleX Career Development Scholarship 2023. Google Africa Developer Scholarship, Google and Andela, 2021.</p></details>
     </div>
   </div>
   <div class="ls">
     <div data-reveal>
-      <div class="cmd">~$ ls ventures/</div>
+      <div class="cmd">Elsewhere</div>
       <ul class="ventures">
         <li><span class="n">LOBB</span><span class="d">tennis coach bookings</span><span class="s"><a href="https://lobb.ng">lobb.ng</a></span></li>
         <li><span class="n">STACC</span><span class="d">data and tech community</span><span class="s"><a href="https://getstacc.org">getstacc.org</a></span></li>
@@ -220,7 +190,7 @@
       </ul>
     </div>
     <div data-reveal>
-      <div class="cmd">~$ cat stack.txt</div>
+      <div class="cmd">Tools I work with</div>
       <p class="stack">python sql spark kafka airflow postgresql snowflake aws power-bi quicksight metabase docker github-actions mlflow</p>
     </div>
   </div>
@@ -230,12 +200,12 @@
   <h2 data-reveal>Let’s talk.</h2>
   <p class="big" data-reveal>Hiring for data engineering, or reviewing a cloud bill?</p>
   <div class="mail" data-reveal>
-    <span class="accent">~$</span><span class="muted">mail</span>
+
     <a href="mailto:myekini1@gmail.com">myekini1@gmail.com</a>
     <button class="copy" type="button" data-copy="myekini1@gmail.com" hidden>copy</button>
   </div>
   <footer class="foot">
-    <span>Public builds plan to use synthetic data · confidential client details omitted</span><span class="keys" hidden>press 1–4 to jump</span>
+    <span>Lagos, Nigeria · <a href="https://github.com/myekini">GitHub</a> · <a href="https://linkedin.com/in/myekini">LinkedIn</a></span><span class="keys" hidden>press 1–4 to jump</span>
   </footer>
 </section>
 

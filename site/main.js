@@ -23,8 +23,16 @@
     if (e.metaKey || e.ctrlKey || e.altKey || e.target.closest('input,textarea,select,button,[contenteditable="true"]')) return;
     document.getElementById(sections[+e.key - 1])?.scrollIntoView({ behavior: motion.matches ? 'instant' : 'smooth' });
   });
-  $$('a[href="#finops-work"],a[href="#waya-work"]').forEach(link => link.addEventListener('click', () => { $(link.hash).open = true; }));
-  if (location.hash === '#finops-work' || location.hash === '#waya-work') $(location.hash).open = true;
+  const revealRole = hash => {
+    if (!['#finops-work', '#waya-work'].includes(hash)) return;
+    const role = $(hash);
+    let parent = role.parentElement;
+    while (parent) { if (parent.tagName === 'DETAILS') parent.open = true; parent = parent.parentElement; }
+    role.open = true;
+  };
+  $$('a[href="#finops-work"],a[href="#waya-work"]').forEach(link => link.addEventListener('click', () => revealRole(link.hash)));
+  revealRole(location.hash);
+  addEventListener('hashchange', () => revealRole(location.hash));
   const copy = $('[data-copy]');
   if (navigator.clipboard) {
     copy.hidden = false;
@@ -38,70 +46,4 @@
       } catch { copy.textContent = 'Use the email link'; }
     });
   }
-  const pipeline = $('[data-pipeline]');
-  if (!pipeline) return;
-  const examples = {
-    data: {
-      name: 'reconciliation.pipeline',
-      titles: ['Payment records', 'Bring together', 'Reconcile', 'Validate', 'Make usable'],
-      bodies: [['Provider exports', 'Bank statements'], ['Batch loads', 'Streaming events'], ['Match records', 'Isolate exceptions'], ['Check totals', 'Review exceptions'], ['Warehouse', 'Dispute portal']],
-      logs: ['Start with provider records and bank statements.', 'Bring records into a common pipeline.', 'Match records and separate exceptions for review.', 'Validate the result before it reaches reporting.', 'Checked records support reporting and dispute resolution.']
-    },
-    cost: {
-      name: 'cloud-cost.pipeline',
-      titles: ['Cloud billing', 'Bring together', 'Model costs', 'Validate', 'Make usable'],
-      bodies: [['AWS cost exports', 'Account history'], ['Monthly reporting', 'Source reconciliation'], ['Amortization', 'Offset logic'], ['Check totals', 'Investigate anomalies'], ['Cost reporting', 'Commitment analysis']],
-      logs: ['Start with AWS cost exports and account history.', 'Reconcile source exports with the reporting model.', 'Apply amortization and offsets to avoid double counting.', 'Investigate anomalies and validate the reported costs.', 'Traceable costs support reporting and commitment decisions.']
-    }
-  };
-  const stages = $$('[data-stage]', pipeline);
-  const pause = $('[data-flow-pause]', pipeline);
-  const log = $('[data-flow-log]', pipeline);
-  const progress = $('[data-flow-progress]', pipeline);
-  let mode = 'data', step = -1, timer = 0, running = false, visible = false, started = false;
-  $('[data-flow-controls]', pipeline).hidden = false;
-  const stopTimer = () => { clearTimeout(timer); timer = 0; };
-  const render = () => {
-    stages.forEach((stage, i) => {
-      stage.classList.toggle('is-active', i === step && running);
-      stage.classList.toggle('is-complete', i <= step);
-      $('[data-stage-state]', stage).textContent = i < step || step === 4 ? 'complete' : i === step ? 'processing' : 'waiting';
-    });
-    pipeline.classList.toggle('flow-running', running && visible && !document.hidden && !motion.matches);
-    pause.disabled = step >= 4 || motion.matches || !started;
-    pause.textContent = running ? 'Pause' : 'Resume';
-    progress.textContent = step < 0 ? '5 connected stages' : `${step + 1} / 5 stages`;
-    log.textContent = step < 0 ? 'Follow the records from source to checked output.' : examples[mode].logs[step];
-  };
-  const schedule = () => {
-    stopTimer();
-    if (!running || !visible || document.hidden || motion.matches) return;
-    timer = setTimeout(() => {
-      step++;
-      if (step >= 4) { step = 4; running = false; }
-      render(); schedule();
-    }, 1450);
-  };
-  const play = () => { started = true; step = motion.matches ? 4 : 0; running = !motion.matches; render(); schedule(); };
-  const setMode = next => {
-    mode = next;
-    const example = examples[mode];
-    $('[data-flow-name]', pipeline).textContent = example.name;
-    stages.forEach((stage, i) => {
-      $('[data-stage-title]', stage).textContent = example.titles[i];
-      $('[data-stage-body]', stage).replaceChildren(document.createTextNode(example.bodies[i][0]), document.createElement('br'), document.createTextNode(example.bodies[i][1]));
-    });
-    $$('[data-flow-mode]', pipeline).forEach(button => button.setAttribute('aria-pressed', String(button.dataset.flowMode === mode)));
-    play();
-  };
-  $$('[data-flow-mode]', pipeline).forEach(button => button.addEventListener('click', () => setMode(button.dataset.flowMode)));
-  $('[data-flow-replay]', pipeline).addEventListener('click', play);
-  pause.addEventListener('click', () => { running = !running; render(); schedule(); });
-  new IntersectionObserver(([entry]) => {
-    visible = entry.isIntersecting;
-    if (visible && !started) play(); else { render(); schedule(); }
-  }, { threshold: 0.15 }).observe(pipeline);
-  document.addEventListener('visibilitychange', () => { render(); schedule(); });
-  motion.addEventListener('change', () => { if (motion.matches) { stopTimer(); step = 4; running = false; render(); } });
-  render();
 })();

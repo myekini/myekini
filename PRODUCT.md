@@ -23,6 +23,8 @@ Preserve the existing black and amber identity and ASCII portrait. Plain languag
 ## Evidence on Hand
 Existing site work history and supplied career context. No public project implementation, evaluation results, résumé PDF or booking URL supplied.
 
+The portfolio now includes its own synthetic browser demonstration: payment matching, duplicate detection, missing-settlement and owner checks, cent-preserving shared-cost allocation, and source-to-output record traces. This is a small executable illustration, separate from the planned CostTrail/Tieout implementations. PDF imagery represents already-extracted synthetic statement rows; no PDF parsing or live account connection is claimed.
+
 ## Product Principles
 - Give completed work priority over proposed capabilities.
 - Explain the relationship between inputs, checks and outputs.

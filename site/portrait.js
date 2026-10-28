@@ -16,6 +16,7 @@
 
   let W, H, dpr, cols, rows, cw, ch, cells = [];
   let lens = { x: 0, y: 0, tx: 0, ty: 0, r: 0, R: 0, on: false };
+  const lensRadius = pointerType => Math.min(pointerType === 'mouse' ? 24 : 28, W * (pointerType === 'mouse' ? 0.085 : 0.16));
   let introStart = 0, introDone = still, raf = 0, visible = true;
 
   const lerp = (a, b, t) => a + (b - a) * t;
@@ -60,7 +61,7 @@
     for (const c of [host, base]) { c.width = W * dpr; c.height = H * dpr; }
     host.style.height = H + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    lens.R = W * 0.17;
+    lens.R = lensRadius('mouse');
     sample();
     bake();
   }
@@ -160,10 +161,10 @@
     lens.tx = e.clientX - b.left; lens.ty = e.clientY - b.top;
     if (!lens.on || lens.r === 0) { lens.x = lens.tx; lens.y = lens.ty; }
   }
-  host.addEventListener('pointerenter', e => { if (e.pointerType !== 'mouse') return; lens.R = W * 0.17; point(e); lens.on = true; kick(); });
+  host.addEventListener('pointerenter', e => { if (e.pointerType !== 'mouse') return; lens.R = lensRadius(e.pointerType); point(e); lens.on = true; kick(); });
   host.addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; point(e); lens.on = true; kick(); });
   host.addEventListener('pointerleave', () => { lens.on = false; kick(); });
-  host.addEventListener('pointerdown', e => { lens.R = W * (e.pointerType === 'mouse' ? 0.17 : 0.38); point(e); lens.on = true; kick(); });
+  host.addEventListener('pointerdown', e => { lens.R = lensRadius(e.pointerType); point(e); lens.on = true; kick(); });
   host.addEventListener('pointerup', e => { if (e.pointerType !== 'mouse') setTimeout(() => { lens.on = false; kick(); }, 900); });
   host.addEventListener('pointercancel', () => { lens.on = false; kick(); });
 

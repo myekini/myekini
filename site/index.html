@@ -25,7 +25,10 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Muhammad Yekini","jobTitle":"Data Engineer","url":"https://muhammadyekini.com/","email":"mailto:myekini1@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Lagos","addressCountry":"NG"},"alumniOf":"Federal University of Technology Minna","sameAs":["https://github.com/myekini","https://linkedin.com/in/myekini","https://muhammadyk.medium.com/"]}
 </script>
+<link rel="preload" href="/assets/portrait.webp" as="image" fetchpriority="high">
+<link rel="preload" href="/assets/portrait-ascii.webp" as="image">
 <script src="/main.js" defer></script>
+<script src="/portrait.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -45,6 +48,12 @@
 <main id="main" class="wrap">
 
 <section id="top" class="hero">
+  <figure class="portrait" data-intro="300">
+    <img src="/assets/portrait.webp" alt="Muhammad Yekini" width="560" height="700" fetchpriority="high" decoding="async">
+    <canvas data-portrait="/assets/portrait-ascii.webp" role="img" aria-label="ASCII portrait of Muhammad Yekini"></canvas>
+    <figcaption class="hint" data-portrait-hint aria-hidden="true"></figcaption>
+  </figure>
+  <div class="hero-text">
   <div class="prompt"><span class="accent">~$</span><span class="cmd" data-typed>whoami</span></div>
   <h1 data-intro="900">muhammad yekini</h1>
   <p class="role" data-intro="1000">data engineer · cloud finops · reconciliation and cost-allocation pipelines</p>
@@ -59,23 +68,6 @@
     <a href="https://github.com/myekini">github</a>
     <a href="https://linkedin.com/in/myekini">linkedin</a>
   </div>
-</section>
-
-<section class="ledger-section" data-intro="1400" aria-label="Reconciliation illustration">
-  <div class="panel">
-    <div class="panel-bar"><span><span class="accent">$ </span>reconcile --providers 33 --watch</span><span class="faint">illustration · synthetic data</span></div>
-    <ul class="ledger-rows" data-ledger>
-      <li><span class="p">paystack</span><span class="ref">txn_30418</span><span class="amt">₦48,210.00</span><span class="res">matched</span></li>
-      <li><span class="p">bank_stmt</span><span class="ref">txn_30417</span><span class="amt">₦212,904.50</span><span class="res">matched</span></li>
-      <li><span class="p">interswitch</span><span class="ref">txn_30416</span><span class="amt">₦7,350.00</span><span class="res exc">Δ → queue</span></li>
-      <li><span class="p">monnify</span><span class="ref">txn_30415</span><span class="amt">₦93,118.20</span><span class="res">matched</span></li>
-      <li><span class="p">flutterwave</span><span class="ref">txn_30414</span><span class="amt">₦1,640.00</span><span class="res">matched</span></li>
-    </ul>
-    <div class="ledger-foot">
-      <span>processed <b data-n>1204</b></span>
-      <span>exceptions <b class="x" data-x>31</b></span>
-      <span>auto-match <b class="ok" data-rate>97.4%</b></span>
-    </div>
   </div>
 </section>
 
@@ -209,12 +201,6 @@
 <section id="about" class="section">
   <h2 data-reveal>## about</h2>
   <div class="about-grid">
-    <div class="photo" data-reveal>
-      <picture>
-        <source srcset="/assets/headshot.webp" type="image/webp">
-        <img src="/assets/headshot.jpg" alt="Muhammad Yekini" width="560" height="700" loading="lazy">
-      </picture>
-    </div>
     <div class="bio" data-reveal>
       <p>Muhammad Yekini is a data engineer based in Lagos. He has spent nearly five years building data systems at fintech and banking companies including WAYA Bank and Earnipay, and works as a freelance Cloud FinOps analyst for an enterprise AWS estate. He founded LOBB, a booking platform for tennis coaching, and leads STACC, a data and tech community.</p>
       <p>B.Tech, Mathematics and Statistics, Federal University of Technology Minna, 2019. KaggleX BIPOC Mentorship Program 2023, selected from 4,000+ applicants, and KaggleX Career Development Scholarship 2023. Google Africa Developer Scholarship, Google and Andela, 2021.</p>

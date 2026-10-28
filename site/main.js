@@ -48,34 +48,6 @@
     const id = setInterval(() => { typed.textContent = text.slice(0, ++i); if (i >= text.length) clearInterval(id); }, 55);
   }
 
-  // Reconciliation feed (synthetic)
-  const ledger = $('[data-ledger]');
-  const providers = ['paystack', 'flutterwave', 'monnify', 'interswitch', 'bank_stmt'];
-  const stats = { n: 1204, x: 31 };
-  let seq = 30418;
-  const naira = v => '₦' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const fade = () => $$('li', ledger).forEach((li, i) => { li.style.opacity = 1 - i * 0.14; });
-  fade();
-  if (!still) {
-    setInterval(() => {
-      if (document.hidden) return;
-      seq++;
-      const exc = Math.random() < 0.14;
-      const li = document.createElement('li');
-      li.className = 'new';
-      li.innerHTML = `<span class="p">${providers[seq % providers.length]}</span><span class="ref">txn_${seq}</span>` +
-        `<span class="amt">${naira(800 + Math.random() * 240000)}</span><span class="res${exc ? ' exc' : ''}">${exc ? 'Δ → queue' : 'matched'}</span>`;
-      ledger.prepend(li);
-      while (ledger.children.length > 6) ledger.lastElementChild.remove();
-      fade();
-      stats.n++;
-      if (exc) stats.x++;
-      $('[data-n]').textContent = stats.n;
-      $('[data-x]').textContent = stats.x;
-      $('[data-rate]').textContent = ((stats.n - stats.x) / stats.n * 100).toFixed(1) + '%';
-    }, 1400);
-  }
-
   // Cost allocator: largest-remainder rounding so allocations sum to the cent
   const alloc = $('[data-alloc]');
   const totalIn = $('[data-total]', alloc);

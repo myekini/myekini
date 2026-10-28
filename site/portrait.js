@@ -18,6 +18,7 @@
   let lens = { x: 0, y: 0, tx: 0, ty: 0, r: 0, R: 0, on: false };
   const lensRadius = pointerType => Math.min(pointerType === 'mouse' ? 24 : 28, W * (pointerType === 'mouse' ? 0.085 : 0.16));
   let introStart = 0, introDone = still, raf = 0, visible = true;
+  let releaseTimer = 0;
 
   const lerp = (a, b, t) => a + (b - a) * t;
 
@@ -91,7 +92,7 @@
 
   function drawFrame(now) {
     ctx.clearRect(0, 0, W, H);
-    const r = lens.r, push = r * 0.75;
+    const r = lens.r, push = r * 0.4;
     if (r > 0.5) {
       ctx.save();
       ctx.beginPath();
@@ -120,12 +121,9 @@
       ctx.fillRect(lens.x - r, lens.y - r, r * 2, r * 2);
       ctx.drawImage(img, 0, 0, W, H);
       ctx.restore();
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = 1;
       ctx.strokeStyle = ACCENT;
       ctx.beginPath(); ctx.arc(lens.x, lens.y, r, 0, Math.PI * 2); ctx.stroke();
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(214,158,46,.22)';
-      ctx.beginPath(); ctx.arc(lens.x, lens.y, r + 5, 0, Math.PI * 2); ctx.stroke();
     } else {
       ctx.drawImage(base, 0, 0, W, H);
     }
@@ -137,10 +135,10 @@
       if (drawIntro(now)) { raf = requestAnimationFrame(loop); return; }
       introDone = true;
     }
-    const k = still ? 1 : 0.2;
+    const k = still ? 1 : 0.38;
     lens.x = lerp(lens.x, lens.tx, k);
     lens.y = lerp(lens.y, lens.ty, k);
-    lens.r = lerp(lens.r, lens.on ? lens.R : 0, still ? 1 : 0.16);
+    lens.r = lerp(lens.r, lens.on ? lens.R : 0, still ? 1 : 0.25);
     if (!lens.on && lens.r < 0.5) lens.r = 0;
     drawFrame(now);
     const moving = !still && (Math.abs(lens.x - lens.tx) > 0.3 || Math.abs(lens.y - lens.ty) > 0.3 || Math.abs(lens.r - (lens.on ? lens.R : 0)) > 0.3);
@@ -157,16 +155,18 @@
   motionPreference.addEventListener('change', () => { still = motionPreference.matches; if (still) introDone = true; kick(); });
 
   function point(e) {
+    // Interacting takes precedence over waiting for the character intro.
+    introDone = true;
     const b = host.getBoundingClientRect();
     lens.tx = e.clientX - b.left; lens.ty = e.clientY - b.top;
     if (!lens.on || lens.r === 0) { lens.x = lens.tx; lens.y = lens.ty; }
   }
   host.addEventListener('pointerenter', e => { if (e.pointerType !== 'mouse') return; lens.R = lensRadius(e.pointerType); point(e); lens.on = true; kick(); });
-  host.addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; point(e); lens.on = true; kick(); });
-  host.addEventListener('pointerleave', () => { lens.on = false; kick(); });
-  host.addEventListener('pointerdown', e => { lens.R = lensRadius(e.pointerType); point(e); lens.on = true; kick(); });
-  host.addEventListener('pointerup', e => { if (e.pointerType !== 'mouse') setTimeout(() => { lens.on = false; kick(); }, 900); });
-  host.addEventListener('pointercancel', () => { lens.on = false; kick(); });
+  host.addEventListener('pointermove', e => { if (e.pointerType !== 'mouse' && !lens.on) return; point(e); lens.on = true; kick(); });
+  host.addEventListener('pointerleave', e => { if (e.pointerType !== 'mouse') return; lens.on = false; kick(); });
+  host.addEventListener('pointerdown', e => { clearTimeout(releaseTimer); lens.R = lensRadius(e.pointerType); point(e); lens.on = true; kick(); });
+  host.addEventListener('pointerup', e => { if (e.pointerType !== 'mouse') releaseTimer = setTimeout(() => { lens.on = false; kick(); }, 400); });
+  host.addEventListener('pointercancel', () => { clearTimeout(releaseTimer); lens.on = false; kick(); });
 
   new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) kick(); }).observe(host);
   let rt;

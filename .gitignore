@@ -1,7 +1,6 @@
 # Private career workspace. This repo is public (it powers the GitHub profile),
 # so the OS and its copies stay out of git.
 /Muhammad Yekini (OS)/
-/design/portfolio-v3/source-material/
 
 .vercel
 .DS_Store

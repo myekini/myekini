@@ -2,6 +2,10 @@
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const sections = ['work', 'projects', 'about', 'contact'];
+  const resume = $('.resume-picker');
+  resume.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && resume.open) { resume.open = false; resume.querySelector('summary').focus(); }
+  });
   const header = $('.top');
   const resizeHeader = () => document.documentElement.style.setProperty('--header-height', header.offsetHeight + 'px');
   resizeHeader();

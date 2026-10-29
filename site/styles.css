@@ -257,8 +257,18 @@ summary:hover { color: var(--accent); }
   .tool-list li { min-height: 44px; }
 }
 
-.resume-links { display: flex; flex-wrap: wrap; column-gap: 18px; margin-top: 12px; font-size: 13px; line-height: 1.8; }
-.resume-links a { display: inline-flex; align-items: center; gap: .5em; min-height: 44px; text-underline-offset: 4px; }
-.resume-links span { color: var(--text-body); }
 
 .section-head > p { font-family: var(--sans); font-size: 15px; line-height: 1.65; color: var(--muted); }
+
+.resume-picker { margin-top: 12px; width: min(100%, 420px); font-family: var(--sans); }
+.resume-picker > summary { display: inline-flex; align-items: center; gap: 12px; color: var(--text); font-size: 14px; list-style: none; text-decoration: underline; text-decoration-color: #3a3d42; text-underline-offset: 4px; }
+.resume-picker > summary::-webkit-details-marker { display: none; }
+.resume-picker > summary:hover { color: var(--accent); }
+.resume-picker[open] > summary svg { transform: rotate(180deg); }
+.resume-options { border-block: 1px solid var(--line-dash); }
+.resume-options a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 72px; padding: 12px 4px; text-decoration: none; font-size: 15px; }
+.resume-options a + a { border-top: 1px solid var(--line); }
+.resume-options a:hover { background: var(--bg-raised); }
+.resume-options small { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+.resume-format { flex-shrink: 0; color: var(--muted); font-size: 12px; }
+.resume-format > span { margin-left: 6px; color: var(--accent); }

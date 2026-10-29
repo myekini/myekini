@@ -42,10 +42,10 @@ Each one is built from a problem already solved in client work, so it can be sho
 
 | # | Project | Question it answers | Status |
 | :--- | :--- | :--- | :--- |
-| 01 | **[CostTrail](https://github.com/myekini/costtrail)**<br/><sub>Cloud cost allocation</sub> | Can engineering and finance trace an allocated cost back to its source and see why it changed? AWS billing data in FOCUS 1.4, totals preserved to the cent, and an LLM variance explainer whose every number is checked by code. | In development |
-| 02 | **[Tieout](https://github.com/myekini/tieout)**<br/><sub>Follow a naira</sub> | Where is the money right now, and does every record agree? A simulated Nigerian banking system (banks, switch, settlement) with double-entry ledgers, built one problem per release. Release 1: transfers that are debited but not credited. | Design stage |
+| 01 | **[CostTrail](https://github.com/myekini/costtrail)**<br/><sub>Cloud cost allocation</sub> | Can engineering and finance trace an allocated cost back to its source and see why it changed? AWS billing data in FOCUS 1.4, totals preserved to the cent. Its assistant, **Scout**, starts as a variance explainer whose every number is checked by code, then grows into a cost analyst agent with an MCP server. | In development |
+| 02 | **[Tieout](https://github.com/myekini/tieout)**<br/><sub>Follow a naira</sub> | Where is the money right now, and does every record agree? A simulated Nigerian banking system (banks, switch, settlement) with double-entry ledgers, built one problem per release. Release 1: transfers that are debited but not credited. Its assistant, **Teller**, explains where a stuck transfer is and why, then grows into an agent that answers "where is this transfer?" | Design stage |
 
-Every LLM feature follows the same loop: the pipeline computes the facts, the LLM explains or proposes, code checks every number, a human approves any change to data, every step is logged, and a small evaluation set scores it.
+Each project has one named assistant that gains a skill with every release. Every skill follows the same loop: the pipeline computes the facts, the LLM explains or proposes, code checks every number, a human approves any change to data, every step is logged, and a small evaluation set scores it.
 
 ---
 

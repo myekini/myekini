@@ -192,10 +192,12 @@ summary:hover { color: var(--accent); }
 .build-list { list-style: none; margin: 24px 0 0; padding: 0; }
 .build-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 22px 0; border-bottom: 1px solid #292b2f; }
 .build-list h3 { font-family: var(--sans); font-size: 22px; line-height: 1.3; font-weight: 500; }
-.build-list h3 a { display: inline-flex; align-items: center; min-height: 44px; gap: 14px; text-decoration: none; }
-.build-list h3 span { color: var(--muted); font-size: 16px; }
 .build-list p { font-family: var(--sans); color: var(--muted); font-size: 15px; line-height: 1.6; margin-top: 4px; }
 .build-status { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.build-links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; margin-top: 6px; }
+.build-links a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; }
+.build-links .soon { padding: 3px 10px; border: 1px dashed #3a3d42; border-radius: 999px; color: var(--muted); font-size: 12px; }
+.booking { margin-top: 20px; width: fit-content; }
 .build-list li:first-child .build-status { color: var(--accent); }
 .principle-note { margin-top: 24px; }
 .principle-note p, .background-note p { font-family: var(--sans); font-size: 15px; line-height: 1.65; color: var(--text-body); max-width: 65ch; margin: 12px 0; }

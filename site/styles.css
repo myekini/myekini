@@ -60,10 +60,10 @@ h1, h2, h3, p { margin: 0; }
 .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); flex-shrink: 0; }
 .portrait { margin: 0; position: relative; width: 100%; }
 .portrait img { display: block; width: 100%; height: auto; filter: grayscale(1) contrast(1.05); }
-.portrait canvas { display: none; width: 100%; cursor: none; touch-action: pan-y; }
+.portrait canvas { display: none; width: 100%; cursor: default; touch-action: pan-y; }
 .portrait img, .portrait canvas { mask-image: linear-gradient(to bottom, #000 68%, transparent 98%); -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 98%); }
 .portrait.live img { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
-.portrait.live canvas { display: block; }
+.portrait.live canvas { display: block; mask-image: none; -webkit-mask-image: none; }
 .portrait .hint { margin-top: 10px; text-align: center; min-height: 1em; }
 /* sections */
 .section { padding: 80px 0; border-top: 1px solid var(--line); }

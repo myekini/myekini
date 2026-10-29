@@ -103,7 +103,7 @@ Navigation, actions and pipeline controls have at least 44px interactive height;
 
 ## Elevation & Depth
 
-The system uses tonal layering and fine borders, without box shadows. The sticky header uses a translucent near-black surface with 10px backdrop blur. The portrait fades into the page toward its lower edge. The pointer lens uses amber rings to distinguish the revealed photograph from its character grid.
+The system uses tonal layering and fine borders, without box shadows. The sticky header uses a translucent near-black surface with 10px backdrop blur. The portrait fades into the page toward its lower edge; the fade is baked into its resting character grid so falling grains remain visible. There is no photo-reveal lens or custom ring cursor.
 
 ## Shapes
 
@@ -138,7 +138,7 @@ Education, the LLM principle, technical inspection and implementation rationale 
 Three open, ruled list rows show repository links, concise purposes and explicit statuses. The first status uses amber; later statuses use muted text. Project titles use medium-weight sans-serif at 22px. Below 560px, status moves beneath the project text. Descriptions identify designs and evaluation plans as available and implementations as pending.
 ### Portrait
 
-The real photograph is the accessible fallback. On desktop and touch devices, a canvas samples the portrait into a character grid. Hover or press-and-drag reveals the photograph beneath a compact, single-ring amber lens: mouse radius is 8.5% of portrait width capped at 24px; touch radius is 16% capped at 28px. Tracking uses quick interpolation and restrained character displacement. Touch release closes the lens after 400ms; scrolling cancels it. Interaction skips the remaining intro. Small portraits use a finer character grid. There is no idle animation loop, and a stationary lens stops redrawing. Reduced motion skips the intro and makes lens changes immediate. Mobile preserves native vertical scrolling.
+The real photograph is the accessible fallback. On desktop and touch devices, a canvas samples the portrait into a character grid. Cursor movement or touch releases nearby characters into sand, using the same shared physics as the hero field in `ascii-sand.js`: gravity, drag, a brief settled pile and an eased return. The affected portrait radius is capped at 14% of its width or 46px, with at most 700 moving characters. No photo or lens is drawn during interaction. Small portraits use a finer character grid. Both layers draw only while particles are active, at 30fps, and reset when offscreen or hidden. Reduced motion retains a static ASCII portrait and field. Mobile preserves native vertical scrolling.
 
 ### Hero ASCII sand
 

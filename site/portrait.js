@@ -1,27 +1,18 @@
-// ASCII portrait. The photo is sampled into a character grid; a lens follows the
-// pointer, pushes the characters aside and shows the real photo underneath.
+// The portrait and hero field share one ASCII sand material.
 (() => {
   const host = document.querySelector('[data-portrait]');
-  if (!host || !host.getContext) return;
-  const box = host.parentElement;
-  const img = box.querySelector('img');
-  const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
-  let still = motionPreference.matches;
-  const RAMP = ' .,:;-=+*#%@';
-  const INK = [232, 217, 176];
-  const ACCENT = '#d69e2e';
+  const sand = window.AsciiSand;
+  if (!host || !sand) return;
   const ctx = host.getContext('2d');
-  const base = document.createElement('canvas');
-  const bctx = base.getContext('2d');
-
-  let W, H, dpr, cols, rows, cw, ch, cells = [];
-  let lens = { x: 0, y: 0, tx: 0, ty: 0, r: 0, R: 0, on: false };
-  const lensRadius = pointerType => Math.min(pointerType === 'mouse' ? 24 : 28, W * (pointerType === 'mouse' ? 0.085 : 0.16));
-  let introStart = 0, introDone = still, raf = 0, visible = true;
-  let releaseTimer = 0;
-
-  const lerp = (a, b, t) => a + (b - a) * t;
-
+  if (!ctx) return;
+  const box = host.parentElement, img = box.querySelector('img');
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const RAMP = ' .,:;-=+*#%@';
+  const base = document.createElement('canvas'), bctx = base.getContext('2d');
+  let W = 0, H = 0, cols, rows, cw, ch, cells = [], active = [];
+  let visible = true, ready = false, touching = false, raf = 0, last = 0, frame = 0;
+  const ink = alpha => 'rgba(232,217,176,' + alpha + ')';
+  function font(g) { g.font = (cw / 0.6).toFixed(2) + 'px "JetBrains Mono", ui-monospace, monospace'; g.textBaseline = 'top'; }
   function sample() {
     const s = document.createElement('canvas');
     s.width = cols; s.height = rows;
@@ -49,144 +40,74 @@
         }
         if (c) v = Math.min(1, Math.max(0, v + 0.25 * (v - n / c)));
         const k = Math.max(1, Math.round(v * (RAMP.length - 1)));
-        cells.push({ x: x * cw, y: y * ch, cx: x * cw + cw / 2, cy: y * ch + ch / 2, ch: RAMP[k], a: 0.3 + 0.7 * v, k, t: (y / rows) * 750 + Math.random() * 450 });
+        cells.push({ homeX: x * cw, homeY: y * ch, char: RAMP[k], a: (0.3 + 0.7 * v) * Math.max(0, Math.min(1, (H * 0.98 - y * ch) / (H * 0.30))), seed: i, state: 0 });
       }
     }
   }
 
+
+  function paint() {
+    sand.clear(ctx);
+    ctx.drawImage(base, 0, 0, W, H);
+    active.forEach(p => ctx.clearRect(p.homeX - 0.5, p.homeY - 0.5, cw + 1, ch + 1));
+    active.forEach(p => { ctx.fillStyle = ink(p.a * (p.state === 2 ? 0.55 : 1)); ctx.fillText(p.char, p.x, p.y); });
+  }
+  function reset() {
+    cancelAnimationFrame(raf); raf = 0; last = 0; touching = false;
+    active.forEach(p => { p.state = 0; }); active = [];
+    if (ready) paint();
+  }
   function setup() {
-    dpr = Math.min(2, devicePixelRatio || 1);
+    reset();
     W = box.clientWidth; H = Math.round(W * 1.25);
+    if (!W) return;
+    const dpr = Math.min(2, devicePixelRatio || 1);
     cols = Math.round(W / (W < 140 ? 1.5 : 2.6));
     cw = W / cols; ch = cw * 1.6; rows = Math.floor(H / ch);
-    for (const c of [host, base]) { c.width = W * dpr; c.height = H * dpr; }
+    for (const c of [host, base]) { c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); }
     host.style.height = H + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    lens.R = lensRadius('mouse');
+    for (const g of [ctx, bctx]) { g.setTransform(dpr, 0, 0, dpr, 0, 0); font(g); }
     sample();
-    bake();
+    cells.forEach(p => { bctx.fillStyle = ink(p.a); bctx.fillText(p.char, p.homeX, p.homeY); });
+    ready = true; paint();
   }
-
-  function font(g) { g.font = `${(cw / 0.6).toFixed(2)}px "JetBrains Mono", ui-monospace, monospace`; g.textBaseline = 'top'; }
-  function ink(a) { return `rgba(${INK[0]},${INK[1]},${INK[2]},${a.toFixed(3)})`; }
-
-  function bake() {
-    bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    bctx.clearRect(0, 0, W, H);
-    font(bctx);
-    for (const c of cells) { bctx.fillStyle = ink(c.a); bctx.fillText(c.ch, c.x, c.y); }
-  }
-
-  function drawIntro(now) {
-    const t = now - introStart;
-    ctx.clearRect(0, 0, W, H);
-    font(ctx);
-    let pending = false;
-    for (const c of cells) {
-      if (t >= c.t) { ctx.fillStyle = ink(c.a); ctx.fillText(c.ch, c.x, c.y); }
-      else if (t > c.t - 260) { ctx.fillStyle = ink(0.25); ctx.fillText(RAMP[1 + Math.floor(Math.random() * (RAMP.length - 1))], c.x, c.y); pending = true; }
-      else pending = true;
-    }
-    return pending;
-  }
-
-  function drawFrame(now) {
-    ctx.clearRect(0, 0, W, H);
-    const r = lens.r, push = r * 0.4;
-    if (r > 0.5) {
-      ctx.save();
-      ctx.beginPath();
-      ctx.rect(0, 0, W, H);
-      ctx.arc(lens.x, lens.y, r + push, 0, Math.PI * 2);
-      ctx.clip('evenodd');
-      ctx.drawImage(base, 0, 0, W, H);
-      ctx.restore();
-      // Characters in the ring get pushed outward
-      font(ctx);
-      for (const c of cells) {
-        const dx = c.cx - lens.x, dy = c.cy - lens.y, d = Math.hypot(dx, dy);
-        if (d >= r + push || d < 0.001) continue;
-        const f = d < r ? 1 : 1 - (d - r) / push;
-        const off = f * f * push * 0.55 + (d < r ? r - d : 0);
-        const nx = c.x + (dx / d) * off, ny = c.y + (dy / d) * off;
-        ctx.fillStyle = ink(c.a * (d < r ? 0.5 : 1));
-        ctx.fillText(c.ch, nx, ny);
-      }
-      // The real photo inside the lens
-      ctx.save();
-      ctx.beginPath();
-      ctx.arc(lens.x, lens.y, r, 0, Math.PI * 2);
-      ctx.clip();
-      ctx.fillStyle = '#0d0e0f';
-      ctx.fillRect(lens.x - r, lens.y - r, r * 2, r * 2);
-      ctx.drawImage(img, 0, 0, W, H);
-      ctx.restore();
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = ACCENT;
-      ctx.beginPath(); ctx.arc(lens.x, lens.y, r, 0, Math.PI * 2); ctx.stroke();
-    } else {
-      ctx.drawImage(base, 0, 0, W, H);
-    }
-  }
-
-  function loop(now) {
+  function tick(now) {
     raf = 0;
-    if (!introDone) {
-      if (drawIntro(now)) { raf = requestAnimationFrame(loop); return; }
-      introDone = true;
+    if (!visible || document.hidden || motion.matches) { reset(); return; }
+    if (now - frame < sand.frameInterval) { raf = requestAnimationFrame(tick); return; }
+    frame = now;
+    const dt = last ? Math.min((now - last) / 1000, 0.05) : 0.033;
+    last = now;
+    active = active.filter(p => sand.step(p, dt, W));
+    paint();
+    if (active.length) raf = requestAnimationFrame(tick); else last = 0;
+  }
+  function disturb(e) {
+    if (!ready || !visible || document.hidden || motion.matches) return;
+    const b = host.getBoundingClientRect(), x = e.clientX - b.left, y = e.clientY - b.top;
+    const radius = Math.min(sand.radius(e.pointerType), W * 0.14, 46);
+    for (const p of cells) {
+      if (active.length >= 700) break;
+      if (p.state || Math.hypot(p.homeX - x, p.homeY - y) > radius) continue;
+      sand.release(p, x, y, H); active.push(p);
     }
-    const k = still ? 1 : 0.38;
-    lens.x = lerp(lens.x, lens.tx, k);
-    lens.y = lerp(lens.y, lens.ty, k);
-    lens.r = lerp(lens.r, lens.on ? lens.R : 0, still ? 1 : 0.25);
-    if (!lens.on && lens.r < 0.5) lens.r = 0;
-    drawFrame(now);
-    const moving = !still && (Math.abs(lens.x - lens.tx) > 0.3 || Math.abs(lens.y - lens.ty) > 0.3 || Math.abs(lens.r - (lens.on ? lens.R : 0)) > 0.3);
-    if (!visible || document.hidden) return;
-    if (moving) raf = requestAnimationFrame(loop);
-    // No idle loop: the pipeline is the page's focal motion.
+    if (active.length && !raf) { last = 0; raf = requestAnimationFrame(tick); }
   }
-  let idle = 0;
-  const kick = () => {
-    if (idle) { clearTimeout(idle); idle = 0; }
-    if (!raf) raf = requestAnimationFrame(loop);
-  };
-  document.addEventListener('visibilitychange', () => { if (!document.hidden) kick(); });
-  motionPreference.addEventListener('change', () => { still = motionPreference.matches; if (still) introDone = true; kick(); });
-
-  function point(e) {
-    // Interacting takes precedence over waiting for the character intro.
-    introDone = true;
-    const b = host.getBoundingClientRect();
-    lens.tx = e.clientX - b.left; lens.ty = e.clientY - b.top;
-    if (!lens.on || lens.r === 0) { lens.x = lens.tx; lens.y = lens.ty; }
-  }
-  host.addEventListener('pointerenter', e => { if (e.pointerType !== 'mouse') return; lens.R = lensRadius(e.pointerType); point(e); lens.on = true; kick(); });
-  host.addEventListener('pointermove', e => { if (e.pointerType !== 'mouse' && !lens.on) return; point(e); lens.on = true; kick(); });
-  host.addEventListener('pointerleave', e => { if (e.pointerType !== 'mouse') return; lens.on = false; kick(); });
-  host.addEventListener('pointerdown', e => { clearTimeout(releaseTimer); lens.R = lensRadius(e.pointerType); point(e); lens.on = true; kick(); });
-  host.addEventListener('pointerup', e => { if (e.pointerType !== 'mouse') releaseTimer = setTimeout(() => { lens.on = false; kick(); }, 400); });
-  host.addEventListener('pointercancel', () => { clearTimeout(releaseTimer); lens.on = false; kick(); });
-
-  new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) kick(); }).observe(host);
-  let rt;
-  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (box.clientWidth !== W) { setup(); kick(); } }, 150); });
-
-  // High-contrast, sharpened greyscale cutout used only for the characters
-  const src = new Image();
-  src.src = host.dataset.portrait;
-  const loaded = el => el.complete && el.naturalWidth ? Promise.resolve() : new Promise(r => el.addEventListener('load', r, { once: true }));
-  const ready = () => Promise.all([
-    loaded(img),
-    loaded(src),
-    document.fonts ? document.fonts.load('10px "JetBrains Mono"') : Promise.resolve()
-  ]);
-  ready().then(() => {
-    setup();
-    box.classList.add('live');
+  host.addEventListener('pointermove', e => { if (e.pointerType === 'mouse' || touching) disturb(e); }, { passive: true });
+  host.addEventListener('pointerdown', e => { touching = e.pointerType !== 'mouse'; disturb(e); }, { passive: true });
+  host.addEventListener('pointerup', () => { touching = false; });
+  host.addEventListener('pointercancel', () => { touching = false; });
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (!visible) reset(); }).observe(host);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) reset(); });
+  motion.addEventListener('change', reset);
+  new ResizeObserver(() => { if (ready && box.clientWidth !== W) setup(); }).observe(box);
+  const src = new Image(); src.src = host.dataset.portrait;
+  const loaded = image => image.complete && image.naturalWidth ? Promise.resolve() : new Promise((resolve, reject) => {
+    image.addEventListener('load', resolve, { once: true }); image.addEventListener('error', reject, { once: true });
+  });
+  Promise.all([loaded(img), loaded(src), document.fonts ? document.fonts.load('10px "JetBrains Mono"') : Promise.resolve()]).then(() => {
+    setup(); box.classList.add('live');
     const hint = box.querySelector('[data-portrait-hint]');
-    if (hint) hint.textContent = matchMedia('(hover: hover)').matches ? 'hover to look closer' : 'tap to look closer';
-    introStart = performance.now();
-    kick();
-  }).catch(() => { /* Keep the original photo if an image or font cannot load. */ });
+    if (hint) hint.textContent = matchMedia('(hover: hover)').matches ? 'move to scatter' : 'touch to scatter';
+  }).catch(() => { /* The original photo remains available if enhancement fails. */ });
 })();

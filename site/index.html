@@ -40,12 +40,12 @@
 
 <header class="top">
   <div class="wrap">
-    <a href="#top">myekini<span class="accent">@</span>lagos <span class="clock" data-clock></span></a>
+    <a href="#top">myekini<span class="accent">@</span>lagos</a>
     <nav aria-label="Sections">
-      <a href="#work"><span>1</span> work</a>
-      <a href="#projects"><span>2</span> projects</a>
-      <a href="#about"><span>3</span> about</a>
-      <a href="#contact"><span>4</span> contact</a>
+      <a href="#work">work</a>
+      <a href="#projects">projects</a>
+      <a href="#about">about</a>
+      <a href="#contact">contact</a>
     </nav>
   </div>
 </header>
@@ -59,6 +59,7 @@
     <p class="role">Data Engineer <span aria-hidden="true">/</span> Cloud FinOps Analyst</p>
     <p class="lede">I build reliable data pipelines and make cloud costs traceable.</p>
     <div class="hero-actions"><a class="action primary" href="#work">Explore my work <span aria-hidden="true">↘</span></a><a class="action" href="mailto:myekini1@gmail.com">Email Muhammad <span aria-hidden="true">↗</span></a></div>
+    <p class="resume-links"><a href="/assets/resumes/Muhammad_Yekini_Data_Analytics_Engineer.pdf" download>Data engineering résumé <span>(PDF)</span></a> <a href="/assets/resumes/Muhammad_Yekini_Data_Scientist.pdf" download>Data science résumé <span>(PDF)</span></a></p>
     <p class="status"><span class="dot"></span>Open to remote roles and relocation</p>
   </div>
   <figure class="portrait">
@@ -93,12 +94,13 @@
   </div>
   <p class="pipeline-note">Synthetic examples. Real validation in your browser.</p>
   <p class="sr-only" role="status" aria-live="polite" data-flow-announcement></p>
-  <details class="demo-inspector" hidden data-inspector><summary>Inspect a record and its checks</summary><div class="inspector-body"><div class="trace-control"><label for="trace-record">Trace a record</label><select id="trace-record" data-trace-select></select></div><ol class="record-trace" data-record-trace></ol><h3>Safety checks</h3><ul class="check-list" data-check-list></ul><p class="inspector-note" data-demo-disclosure>The PDF is a visual example; statement rows are supplied as synthetic extracted data. This demo does not parse PDFs or connect to live accounts.</p><details class="decision-note"><summary>Why the demo works this way</summary><p>Amounts use integer minor units, cents or kobo, so rounding stays testable. Shared costs use largest-remainder allocation to preserve the total. Duplicate records and missing matches or owners go to review instead of being silently repaired. Those are choices implemented in this demo.</p><a href="https://github.com/myekini/myekini/blob/main/site/pipeline-engine.js">Read the demo logic on GitHub</a></details></div></details>
+  <details class="demo-inspector" hidden data-inspector><summary>Inspect a record and its checks</summary><div class="inspector-body"><div class="trace-control"><label for="trace-record">Trace a record</label><select id="trace-record" data-trace-select></select></div><ol class="record-trace" data-record-trace></ol><h3>Safety checks</h3><ul class="check-list" data-check-list></ul><p class="inspector-note" data-demo-disclosure>The PDF is a visual example; statement rows are supplied as synthetic extracted data. This demo does not parse PDFs or connect to live accounts.</p><details class="decision-note"><summary>Why the demo works this way</summary><p>Amounts use integer minor units, cents or kobo, so rounding stays testable. Shared costs are split by usage weights; any leftover cents go to the largest fractional shares so the total stays exact. Duplicate records and missing matches or owners go to review instead of being silently repaired. In the AI example, source checks compare cited IDs with the supplied evidence; they do not verify every statement’s meaning.</p><a href="https://github.com/myekini/myekini/blob/main/site/pipeline-engine.js">Read the demo logic on GitHub</a></details></div></details>
 </section>
 
 <section id="work" class="section">
   <div class="section-head">
     <h2>Selected work</h2>
+    <p>Results from professional engagements.</p>
   </div>
 
   <div class="selected-work">
@@ -106,13 +108,13 @@
       <header class="story-head"><h3>Payment reconciliation</h3><p class="story-domain">WAYA Bank · Data engineering</p></header>
       <p class="story-copy">Automated reconciliation across 33+ payment providers and bank statements, with a dispute portal and a consolidated warehouse.</p>
       <dl class="story-results"><div><dt>Manual reconciliation</dt><dd>80% less work</dd></div><div><dt>Dispute resolution</dt><dd>48h → &lt;24h</dd></div></dl>
-      <details class="case-note"><summary>Approach and role details</summary><p>Consolidated 50+ microservices into a PostgreSQL warehouse, with Airflow batch loads and Kafka streaming for high-priority tables.</p><a href="#waya-work">Full role details</a></details>
+      <details class="case-note"><summary>How I built it</summary><p><strong>The problem.</strong> Payment records across 33+ providers and bank statements needed matching, while operational data was spread across 50+ microservices.</p><p><strong>My contribution.</strong> I built the reconciliation system and dispute portal, and consolidated service data into a PostgreSQL warehouse with standardized schemas.</p><p><strong>The pipeline choice.</strong> Airflow handled batch loads; Kafka streamed high-priority wallet, NIP and withdrawal tables at under five minutes. Metabase dashboards and anomaly checks supported operational monitoring.</p><p><strong>The outcome.</strong> Manual reconciliation fell by 80%, and dispute resolution went from 48 hours to under 24. This is a summary of my professional work; the interactive example above uses synthetic data.</p><a href="#waya-work">Full role details</a></details>
     </article>
     <article class="work-story">
       <header class="story-head"><h3>Cloud cost reporting</h3><p class="story-domain">Freelance · Cloud FinOps</p></header>
       <p class="story-copy">Monthly cost reporting across 35+ AWS accounts, reconciling source exports to the reporting model and investigating anomalies.</p>
       <dl class="story-results"><div><dt>Reporting errors caught</dt><dd>~$135K</dd></div><div><dt>Refresh and validation</dt><dd>~60% less time</dd></div></dl>
-      <details class="case-note"><summary>Approach and role details</summary><p>For reservations and marketplace offers, I designed daily amortization and offset logic to remove lump-sum double counting. Separately, I caught about $135K of manual-refresh errors before they reached leadership.</p><a href="#finops-work">Full role details</a></details>
+      <details class="case-note"><summary>How I built it</summary><p><strong>The problem.</strong> Monthly reporting across 35+ AWS accounts needed to reconcile billing exports with the Power BI model, without counting upfront charges twice.</p><p><strong>My contribution.</strong> I designed daily amortization, spreading upfront charges over the period they cover, and offset logic that removes the original lump sum from the same reporting total.</p><p><strong>The checks.</strong> I reconcile Cost Explorer exports to the reporting model and investigate anomalies. Separately, I caught about $135K of manual-refresh errors before leadership reporting.</p><p><strong>The delivery boundary.</strong> QuickSight dashboards are built; the pipeline from the master billing source is being developed with engineering. Refresh and validation take about 60% less time.</p><a href="#finops-work">Full role details</a></details>
     </article>
   </div>
   <details class="experience-disclosure" id="experience"><summary>Full experience <span>Six roles across data, finance and automation</span></summary>
@@ -156,7 +158,7 @@
   </details>
 
   <details class="job" name="work">
-    <summary><span class="dates">mar 2022 – nov 2023</span><span><span class="title">AI &amp; Automation Engineer</span><span class="org">mobi automation</span></span><span class="sign" aria-hidden="true"></span></summary>
+    <summary><span class="dates">mar 2022 – nov 2023</span><span><span class="title">AI &amp; Automation Engineer</span><span class="org">mobi automation · full-time → part-time → contract</span></span><span class="sign" aria-hidden="true"></span></summary>
     <ul class="points">
       <li><b>70%</b><span>Of tier-1 support inquiries handled without an agent, using LLM integration (OpenAI GPT, Hugging Face). Resolution time down 15%.</span></li>
       <li><b>+60%</b><span>User engagement from Python NLP chatbots with webhooks (SVA Bot, MOBI SupportBot, Music Play, Lottery Bots).</span></li>
@@ -164,7 +166,7 @@
   </details>
 
   <details class="job" name="work">
-    <summary><span class="dates">mar 2022 – aug 2023</span><span><span class="title">Python Engineer Team Lead</span><span class="org">bincom dev center · intern → junior engineer → team lead</span></span><span class="sign" aria-hidden="true"></span></summary>
+    <summary><span class="dates">mar 2022 – aug 2023</span><span><span class="title">Python Engineer Team Lead</span><span class="org">bincom dev center · full-time · intern → junior engineer → team lead</span></span><span class="sign" aria-hidden="true"></span></summary>
     <ul class="points">
       <li><b>team of 4</b><span>Led the refactor of the legacy Python loan-application codebase for Social Lender, a fintech lending platform, cutting processing time by 20%.</span></li>
       <li><b>-25%</b><span>Manual entry time from automating customer onboarding data extraction with Selenium and BeautifulSoup. Errors down 30%.</span></li>
@@ -190,7 +192,7 @@
     <div class="about-person">
       <p class="about-bio">I’m based in Lagos, with experience across fintech, banking and enterprise cloud costs. Outside that work, I founded LOBB for tennis coach bookings and lead STACC, a data and tech community.</p>
       <details class="background-note"><summary>Education and scholarships</summary><p>B.Tech, Mathematics and Statistics, Federal University of Technology Minna, 2019. KaggleX BIPOC Mentorship Program 2023, selected from 4,000+ applicants, and KaggleX Career Development Scholarship 2023. Google Africa Developer Scholarship, Google and Andela, 2021.</p></details>
-      <div class="elsewhere"><h3>Elsewhere</h3><ul class="ventures"><li><span class="n">LOBB</span><span class="d">Tennis coach bookings</span><span class="s"><a href="https://lobb.ng">lobb.ng</a></span></li><li><span class="n">STACC</span><span class="d">Data and tech community</span><span class="s"><a href="https://getstacc.org">getstacc.org</a></span></li><li><span class="n">DRFT</span><span class="d">Resume editor</span><span class="s">Pre-launch</span></li></ul></div>
+      <div class="elsewhere"><h3>Elsewhere</h3><ul class="ventures"><li><span class="n">LOBB</span><span class="d">Tennis coach bookings</span><span class="s"><a href="https://lobb.ng">lobb.ng</a></span></li><li><span class="n">STACC</span><span class="d">Data and tech community</span><span class="s"><a href="https://getstacc.org">getstacc.org</a></span></li></ul></div>
     </div>
     <div class="toolkit"><h3>Tools I work with</h3><div class="tool-group"><h4>Data & pipelines</h4><ul class="tool-list"><li><img src="/assets/tools/python.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Python</span></li><li><img src="/assets/tools/sql.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>SQL</span></li><li><img src="/assets/tools/spark.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Spark</span></li><li><img src="/assets/tools/kafka.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Kafka</span></li><li><img src="/assets/tools/airflow.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Airflow</span></li><li><img src="/assets/tools/postgresql.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>PostgreSQL</span></li><li><img src="/assets/tools/snowflake.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Snowflake</span></li></ul></div>
 <div class="tool-group"><h4>Cloud & reporting</h4><ul class="tool-list"><li><img src="/assets/tools/aws.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>AWS</span></li><li><img src="/assets/tools/powerbi.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Power BI</span></li><li><img src="/assets/tools/quicksight.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>QuickSight</span></li><li><img src="/assets/tools/metabase.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Metabase</span></li></ul></div>
@@ -207,7 +209,7 @@
     <button class="copy" type="button" data-copy="myekini1@gmail.com" hidden>Copy</button>
   </div>
   <footer class="foot">
-    <span>Lagos, Nigeria · <a href="https://github.com/myekini">GitHub</a> · <a href="https://linkedin.com/in/myekini">LinkedIn</a></span><span class="keys" hidden>press 1–4 to jump</span>
+    <span>Lagos, Nigeria · <a href="https://github.com/myekini">GitHub</a> · <a href="https://linkedin.com/in/myekini">LinkedIn</a></span>
   </footer>
 </section>
 

@@ -155,3 +155,6 @@ A simple email row keeps the mail link directly available. The footer includes l
 - **Don't** present the synthetic demonstration as a live client system, a client architecture or a PDF parser.
 - **Don't** use fabricated screenshots or finished-product presentation to imply that planned public builds are complete.
 - **Don't** add scattered entrance choreography or continuous idle portrait flicker.
+
+### Hiring access and clarity
+The hero offers two labelled PDF résumé downloads after the primary actions. Header navigation uses plain section names; the clock and visible number-key hint are removed. Keyboard shortcuts remain available. Selected-work outcomes stay visible, with problem, contribution, technical choice and delivery boundaries inside native disclosures. The About section shows the two active ventures; the pre-launch résumé editor is omitted.

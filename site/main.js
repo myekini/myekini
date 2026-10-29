@@ -2,10 +2,6 @@
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const sections = ['work', 'projects', 'about', 'contact'];
-  const clock = $('[data-clock]');
-  const tick = () => { clock.textContent = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Lagos' }) + ' WAT'; };
-  tick();
-  setInterval(tick, 20000);
   const header = $('.top');
   const resizeHeader = () => document.documentElement.style.setProperty('--header-height', header.offsetHeight + 'px');
   resizeHeader();
@@ -17,8 +13,6 @@
   };
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-  // Number-key navigation only helps where there is a keyboard and a fine pointer
-  $('.keys').hidden = !matchMedia('(hover: hover) and (pointer: fine)').matches;
   addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey || e.target.closest('input,textarea,select,button,[contenteditable="true"]')) return;
     // Keyboard jumps are repeated actions, so they land instantly instead of animating

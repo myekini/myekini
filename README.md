@@ -60,7 +60,8 @@ B.Tech, Mathematics and Statistics, Federal University of Technology Minna, 2019
 | :--- | :--- | :--- |
 | **LOBB** | Tennis coach bookings | [lobb.ng](https://lobb.ng) |
 | **STACC** | Data and tech community | [getstacc.org](https://getstacc.org) |
-| **DRFT** | AI resume editor | Pre-launch |
+
+[Data engineering résumé (PDF)](site/assets/resumes/Muhammad_Yekini_Data_Analytics_Engineer.pdf) · [Data science résumé (PDF)](site/assets/resumes/Muhammad_Yekini_Data_Scientist.pdf)
 
 **Stack:** `Python` `SQL` `Spark` `Kafka` `Airflow` `PostgreSQL` `Snowflake` `AWS` `Power BI` `QuickSight` `Metabase` `Docker` `GitHub Actions` `MLflow`
 

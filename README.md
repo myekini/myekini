@@ -43,8 +43,7 @@ Each one is built from a problem already solved in client work, so it can be sho
 | # | Project | Question it answers | Status |
 | :--- | :--- | :--- | :--- |
 | 01 | **[CostTrail](https://github.com/myekini/costtrail)**<br/><sub>Cloud cost allocation</sub> | Can engineering and finance trace an allocated cost back to its source and see why it changed? AWS billing data in FOCUS 1.4, totals preserved to the cent, and an LLM variance explainer whose every number is checked by code. | In development |
-| 02 | **[Tieout](https://github.com/myekini/tieout)**<br/><sub>Settlement reconciliation</sub> | Multi-provider settlement matching with an exception queue, idempotent reruns and an LLM triage assistant. | Design stage |
-| 03 | **[Liftcheck](https://github.com/myekini/liftcheck)**<br/><sub>A/B test analysis</sub> | A/B test analysis with power, guardrails and variance reduction, plus an LLM readout writer grounded in the computed statistics. | Planned |
+| 02 | **[Tieout](https://github.com/myekini/tieout)**<br/><sub>Follow a naira</sub> | Where is the money right now, and does every record agree? A simulated Nigerian banking system (banks, switch, settlement) with double-entry ledgers, built one problem per release. Release 1: transfers that are debited but not credited. | Design stage |
 
 Every LLM feature follows the same loop: the pipeline computes the facts, the LLM explains or proposes, code checks every number, a human approves any change to data, every step is logged, and a small evaluation set scores it.
 

@@ -64,9 +64,9 @@ components:
 
 ## Overview
 
-The established direction is an editorial engineering portfolio in a near-black and amber world. Large, restrained sans-serif headings and readable narrative sit alongside monospaced labels, numbered navigation and terminal-like details. The ASCII portrait is the distinctive identity asset.
+The established direction is an editorial engineering portfolio in a near-black and amber world. Large, restrained sans-serif headings and readable narrative sit alongside monospaced labels, numbered navigation and terminal-like details. The ASCII portrait and user-responsive ASCII sand across the hero are the distinctive identity assets.
 
-Data Engineering and Cloud FinOps receive equal visual weight in the professional title, example selector and paired work stories. The surrounding page remains still while a seven-node architecture diagram carries document-shaped packets from sources through checks to reporting or human review. Supporting explanations expand in place, keeping the default reading path short.
+Data Engineering and Cloud FinOps receive equal visual weight in the professional title, example selector and paired work stories. User-triggered ASCII sand gives the hero a tactile background; the seven-node architecture diagram carries document-shaped packets from sources through checks to reporting or human review. Supporting explanations expand in place, keeping the default reading path short.
 
 **Key Characteristics:**
 
@@ -139,6 +139,10 @@ Three open, ruled list rows show repository links, concise purposes and explicit
 ### Portrait
 
 The real photograph is the accessible fallback. On desktop and touch devices, a canvas samples the portrait into a character grid. Hover or press-and-drag reveals the photograph beneath a compact, single-ring amber lens: mouse radius is 8.5% of portrait width capped at 24px; touch radius is 16% capped at 28px. Tracking uses quick interpolation and restrained character displacement. Touch release closes the lens after 400ms; scrolling cancels it. Interaction skips the remaining intro. Small portraits use a finer character grid. There is no idle animation loop, and a stationary lens stops redrawing. Reduced motion skips the intro and makes lens changes immediate. Mobile preserves native vertical scrolling.
+
+### Hero ASCII sand
+
+A decorative canvas spans the viewport width within the hero's height. Amber characters are dimmed behind text and the portrait. Mouse movement or touch releases nearby characters into gravity-driven fall, a brief settled pile, then a return to their original positions. Frames are capped at 30fps with at most 2200 characters on desktop and 650 on mobile; a pre-rendered still field avoids redrawing stationary glyphs. No frame loop runs at idle. Offscreen or hidden heroes reset to the still field, and reduced motion retains the texture without displacement. The canvas is hidden from assistive technology and cannot intercept links or scrolling; without JavaScript the normal hero remains usable.
 
 ### Contact
 

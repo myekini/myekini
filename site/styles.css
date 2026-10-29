@@ -44,7 +44,8 @@ h1, h2, h3, p { margin: 0; }
 .top nav span, .clock { color: var(--faint); }
 
 /* hero */
-.hero { padding: 72px 0 68px; display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 32px; align-items: center; }
+.hero { position: relative; isolation: isolate; padding: 72px 0 68px; display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 32px; align-items: center; }
+.hero-sand { position: absolute; top: 0; left: 50%; width: 100%; height: 100%; transform: translateX(-50%); z-index: -1; pointer-events: none; }
 .hero-text { min-width: 0; }
 .hero h1 { font-family: var(--sans); font-size: clamp(56px, 6.8vw, 88px); line-height: .98; letter-spacing: -.035em; font-weight: 500; color: var(--text-strong); }
 .role { font-family: var(--sans); font-size: clamp(17px, 2vw, 22px); color: var(--text); margin-top: 26px; line-height: 1.6; }

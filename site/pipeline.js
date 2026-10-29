@@ -142,17 +142,20 @@
     });
     $('[data-flow-log]').textContent = modes[mode].messages[phase];
     $('[data-flow-progress]').textContent = finished ? 'Run complete' : !playing && started ? 'Paused' : `Step ${phase + 1} of 5`;
+    // One status bar: the step message while it plays, the result once it finishes
+    $('[data-flow-status]').hidden = finished;
+    $('[data-demo-result]').hidden = !finished;
     $('[data-flow-pause]').disabled = !started || finished || motion.matches;
     $('[data-flow-pause]').hidden = !started || finished || motion.matches;
     $('[data-flow-pause]').textContent = playing ? 'Pause' : 'Resume';
   }
   function renderOutcome() {
     const ai = mode === 'ai';
-    $('[data-demo-result]').hidden = false;
     $('[data-result-title]').textContent = ai
       ? `${result.accepted.length} explanations checked. ${result.held.length ? `${result.held.length} held for review.` : 'Ready for human approval.'}`
       : `${result.accepted.length} records cleared. ${result.held.length ? `${result.held.length} held for review.` : 'No exceptions.'}`;
-    $('[data-result-description]').textContent = result.held.length ? result.held[0].reason : ai ? 'Simulated model response. Amounts and source IDs are checked; no data is changed.' : 'Every input is accounted for across reporting and review.';
+    $('[data-result-description]').textContent = result.held.length ? result.held[0].reason : '';
+    $('[data-result-description]').hidden = !result.held.length;
     $('[data-published-label]').textContent = ai ? 'Checked drafts' : 'Sent to reporting';
     $('[data-held-label]').textContent = ai ? 'Flagged drafts' : 'Held for review';
     $('[data-published]').textContent = ai ? `${result.accepted.length} / ${result.rows.length}` : money(result.published);
@@ -189,7 +192,11 @@
     traceRecord();
     const list = $('[data-check-list]'); list.replaceChildren();
     result.checks.forEach(check => { const li = document.createElement('li'); li.textContent = `${check.ok ? 'PASS' : 'FAIL'} · ${check.label}`; li.classList.toggle('check-failed', !check.ok); list.append(li); });
-    $('[data-demo-disclosure]').textContent = mode === 'ai' ? 'Model responses are deterministic fixtures, not live inference. Code checks the shown currency amounts and source IDs, not the semantic truth of arbitrary language. Checked drafts still require human approval.' : 'The PDF is a visual example; statement rows are supplied as synthetic extracted data. This demo does not parse PDFs or connect to live accounts.';
+    $('[data-demo-disclosure]').textContent = {
+      data: 'The PDF is only a picture; statement rows are synthetic extracted data.',
+      cost: 'Shared costs are split by usage, and leftover cents go to the largest shares so the total stays exact.',
+      ai: 'Model replies are fixed examples, not live AI. Code checks amounts and source IDs, not the meaning of the text, and drafts still need human approval.'
+    }[mode];
   }
   function play(manual = true) {
     announcement = manual;

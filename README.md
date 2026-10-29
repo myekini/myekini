@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Muhammad Yekini</h1>
 
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=21&pause=1200&color=D69E2E&center=true&vCenter=true&width=600&height=42&lines=Data+Engineer+%C2%B7+Cloud+FinOps;Reconciliation+and+cost-allocation+pipelines;LLM+features+tested+like+any+other+code" alt="Data Engineer · Cloud FinOps · Reconciliation and cost-allocation pipelines" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=21&pause=1200&color=D69E2E&center=true&vCenter=true&width=600&height=42&lines=Data+Engineer+%C2%B7+Cloud+FinOps;Payment+and+cloud-cost+data+that+adds+up;AI+features+tested+like+code" alt="Data Engineer · Cloud FinOps · Payment and cloud-cost data that adds up" />
 
   <p align="center">
     <a href="https://muhammadyekini.com"><img src="https://img.shields.io/badge/Portfolio-muhammadyekini.com-d69e2e?style=flat-square" alt="Portfolio" /></a>
@@ -13,9 +13,9 @@
 
 ---
 
-**Data engineer · Cloud FinOps · Reconciliation and cost-allocation pipelines**
+**Data Engineer · Cloud FinOps · Payment and cloud-cost data that adds up**
 
-I build data systems for finance-heavy products, and I build LLM features into them that are tested like any other code.
+I build the data systems that make finance numbers add up, and the AI on top that has to show its work.
 
 > **Latest:** caught about $135K of manual-refresh errors in a 35-account AWS cost model before they reached leadership.
 

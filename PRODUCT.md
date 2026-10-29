@@ -25,6 +25,8 @@ Existing site work history and supplied career context. No public project implem
 
 The portfolio now includes its own synthetic browser demonstration: payment matching, duplicate detection, missing-settlement and owner checks, cent-preserving shared-cost allocation, and source-to-output record traces. This is a small executable illustration, separate from the planned CostTrail/Tieout implementations. PDF imagery represents already-extracted synthetic statement rows; no PDF parsing or live account connection is claimed.
 
+The Data + AI example computes synthetic cost changes, uses deterministic simulated explanation fixtures, and checks their displayed currency amounts and source IDs. It does not call a model API or establish semantic truth checking. Checked drafts still require human approval; no data write-back is performed. This supporting example does not change the dual Data Engineering / Cloud FinOps headline.
+
 ## Product Principles
 - Give completed work priority over proposed capabilities.
 - Explain the relationship between inputs, checks and outputs.

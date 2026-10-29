@@ -7,7 +7,7 @@
   const $$ = s => [...host.querySelectorAll(s)];
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const svgNS = 'http://www.w3.org/2000/svg';
-  const duration = 7000, beat = duration / 5;
+  const duration = 5600, beat = duration / 5;
   const modes = {
     data: {
       name: 'Payment reconciliation',
@@ -38,13 +38,29 @@
       scenarios: [['clean', 'Clean run'], ['double', 'Double-counted charge'], ['owner', 'Missing team owner']],
       packets: ['CSV', 'JSON', 'CENTS', 'BILL-101'],
       messages: ['Billing rows and team-allocation rules enter separately.', 'Read charges as integer cents and retain source references.', 'Assign direct costs; split shared costs without losing a cent.', 'Check unique charges, known owners and preserved totals.', 'Publish traceable costs. Hold exceptions for human review.']
+    },
+    ai: {
+      name: 'Data pipeline + variance explainer',
+      nodes: {
+        'source-a': ['Daily metrics', 'Synthetic cost records', 'daily-costs.csv'],
+        'source-b': ['Evidence rules', 'Allowed source references', 'fact-schema.json'],
+        ingest: ['Compute changes', 'Facts before language', 'Python / SQL pattern'],
+        model: ['Draft explanation', 'Simulated LLM response', 'fixture, not a live model'],
+        check: ['Check draft', 'Amounts + source IDs', 'numeric + source checks'],
+        output: ['Checked draft', 'Ready for human approval', 'no automatic write-back'],
+        review: ['Human review', 'Hold unsupported claims', 'no silent repair']
+      },
+      scenarios: [['clean', 'Grounded response'], ['wrong-number', 'Wrong amount'], ['missing-source', 'Unknown source']],
+      packets: ['CSV', 'JSON', 'FACTS', 'DRAFT'],
+      messages: ['Load sample metrics and a source-reference contract.', 'Compute changes in code; keep the evidence separate from the explanation.', 'Create a simulated model response using the computed facts.', 'Compare each currency amount and source ID with the evidence.', 'Keep checked drafts for human approval; hold unsupported claims.']
     }
   };
   const connections = [['source-a', 'ingest'], ['source-b', 'ingest'], ['ingest', 'model'], ['model', 'check'], ['check', 'output'], ['check', 'review']];
   const nodes = Object.fromEntries($$('[data-node]').map(node => [node.dataset.node, node]));
+  const defaultModelIcon = nodes.model.querySelector('svg').innerHTML;
   const edges = [], packets = [];
   let mode = 'data', fault = 'clean', result = engine.run(), elapsed = 0, phase = -1;
-  let playing = false, inView = false, started = false, raf = 0, lastNow = null, announcement = false;
+  let playing = false, inView = false, started = false, raf = 0, lastNow = null, lastPaint = 0, announcement = false;
   const money = cents => new Intl.NumberFormat('en-US', { style: 'currency', currency: result.currency, currencyDisplay: 'narrowSymbol', minimumFractionDigits: 2 }).format(cents / 100);
   const createSVG = (tag, attrs) => { const el = document.createElementNS(svgNS, tag); Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value)); return el; };
   connections.forEach(([from, to], i) => {
@@ -89,7 +105,7 @@
   function drawPackets() {
     packets.forEach(packet => {
       const { edge, offset, group, text } = packet;
-      const segment = edge < 2 ? 0 : edge - 1;
+      const segment = edge < 2 ? 0 : Math.min(edge - 1, 3);
       const t = (elapsed - segment * beat) / beat - offset;
       const disabled = edge === 5 && !result.held.length;
       const show = !motion.matches && started && elapsed < duration && t >= 0 && t <= 1 && !disabled;
@@ -111,13 +127,16 @@
       const index = nodePhases[id], isReview = id === 'review';
       node.classList.toggle('node-active', started && phase === index && !finished && playing);
       node.classList.toggle('node-complete', started && (phase > index || finished));
-      node.classList.toggle('node-held', isReview && result.held.length > 0 && phase === 4);
+      node.classList.toggle('node-held', (isReview || id === 'check') && result.held.length > 0 && phase === 4);
       const status = node.querySelector('[data-node-status]');
       status.textContent = !started ? '' : phase < index ? 'Waiting' : phase === index && !finished ? (playing ? 'Processing' : 'Paused') : 'Complete';
       if (index === 4 && phase === 4) status.textContent = isReview ? (result.held.length ? `${result.held.length} held` : 'No exceptions') : `${result.accepted.length} published`;
+      if (id === 'check' && phase === 4 && result.held.length) status.textContent = `${result.held.length} flagged`;
+      if (mode === 'ai' && id === 'output' && phase === 4) status.textContent = `${result.accepted.length} checked`;
+      if (mode === 'ai' && isReview && phase === 4 && !result.held.length) status.textContent = 'Approval required';
     });
     edges.forEach((edge, i) => {
-      const segment = i < 2 ? 0 : i - 1;
+      const segment = i < 2 ? 0 : Math.min(i - 1, 3);
       edge.path.classList.toggle('edge-passed', started && phase > segment && !(i === 5 && !result.held.length));
       edge.path.classList.toggle('edge-held', i === 5 && phase === 4 && result.held.length > 0);
     });
@@ -126,19 +145,26 @@
     $('[data-flow-pause]').disabled = !started || finished || motion.matches;
     $('[data-flow-pause]').hidden = !started || finished || motion.matches;
     $('[data-flow-pause]').textContent = playing ? 'Pause' : 'Resume';
-    $('[data-demo-result]').hidden = !finished;
-    if (finished) {
-      $('[data-result-title]').textContent = `${result.accepted.length} records published. ${result.held.length ? `${result.held.length} held for review.` : 'No exceptions.'}`;
-      $('[data-result-description]').textContent = result.held.length ? result.held[0].reason : 'All sample records passed. Every input is accounted for.';
-      $('[data-published]').textContent = money(result.published);
-      $('[data-held]').textContent = money(result.review);
-      $('[data-demo-result]').classList.toggle('has-exceptions', result.held.length > 0);
-      if (announcement) $('[data-flow-announcement]').textContent = $('[data-result-title]').textContent;
-    }
+  }
+  function renderOutcome() {
+    const ai = mode === 'ai';
+    $('[data-demo-result]').hidden = false;
+    $('[data-result-title]').textContent = ai
+      ? `${result.accepted.length} explanations checked. ${result.held.length ? `${result.held.length} held for review.` : 'Ready for human approval.'}`
+      : `${result.accepted.length} records cleared. ${result.held.length ? `${result.held.length} held for review.` : 'No exceptions.'}`;
+    $('[data-result-description]').textContent = result.held.length ? result.held[0].reason : ai ? 'Simulated model response. Amounts and source IDs are checked; no data is changed.' : 'Every input is accounted for across reporting and review.';
+    $('[data-published-label]').textContent = ai ? 'Checked drafts' : 'Sent to reporting';
+    $('[data-held-label]').textContent = ai ? 'Flagged drafts' : 'Held for review';
+    $('[data-published]').textContent = ai ? `${result.accepted.length} / ${result.rows.length}` : money(result.published);
+    $('[data-held]').textContent = ai ? String(result.held.length) : money(result.review);
+    $('[data-demo-result]').classList.toggle('has-exceptions', result.held.length > 0);
+    if (announcement) $('[data-flow-announcement]').textContent = $('[data-result-title]').textContent;
   }
   function tick(now) {
     raf = 0;
     if (!playing || !inView || document.hidden || motion.matches) { lastNow = null; return; }
+    if (now - lastPaint < 32) { raf = requestAnimationFrame(tick); return; }
+    lastPaint = now;
     if (lastNow !== null) elapsed = Math.min(duration, elapsed + now - lastNow);
     lastNow = now;
     if (elapsed >= duration) playing = false;
@@ -152,7 +178,9 @@
   function traceRecord() {
     const trace = result.traces[+$('[data-trace-select]').value || 0];
     const list = $('[data-record-trace]'); list.replaceChildren();
-    const entries = [['Source', `${trace.source} · ${money(trace.cents)}`], ['Read', trace.normalization], ['Process', trace.model], ['Check', trace.check], ['Output', trace.route === 'review' ? 'Held for human review. Not included in published reporting.' : 'Included in the published output, with its source reference.']];
+    const outcome = mode === 'ai' ? (trace.route === 'review' ? 'Flagged draft held for human review. No data changed.' : 'Checked draft ready for human approval. No data changed.') : trace.route === 'review' ? 'Held for human review. Not included in published reporting.' : 'Included in the published output, with its source reference.';
+    const entries = [['Source', `${trace.source} · ${money(trace.cents)}`], ['Compute', trace.normalization], [mode === 'ai' ? 'Draft' : 'Process', trace.model], ['Check', trace.check], ['Output', outcome]];
+    if (mode === 'ai') entries.splice(2, 0, ['Prompt', trace.prompt]);
     entries.forEach(([label, value]) => { const li = document.createElement('li'); const b = document.createElement('b'); b.textContent = label; const p = document.createElement('p'); p.textContent = value; li.append(b, p); list.append(li); });
   }
   function inspect() {
@@ -161,16 +189,19 @@
     traceRecord();
     const list = $('[data-check-list]'); list.replaceChildren();
     result.checks.forEach(check => { const li = document.createElement('li'); li.textContent = `${check.ok ? 'PASS' : 'FAIL'} · ${check.label}`; li.classList.toggle('check-failed', !check.ok); list.append(li); });
+    $('[data-demo-disclosure]').textContent = mode === 'ai' ? 'Model responses are deterministic fixtures, not live inference. Code checks the shown currency amounts and source IDs, not the semantic truth of arbitrary language. Checked drafts still require human approval.' : 'The PDF is a visual example; statement rows are supplied as synthetic extracted data. This demo does not parse PDFs or connect to live accounts.';
   }
   function play(manual = true) {
     announcement = manual;
     $('[data-flow-announcement]').textContent = '';
-    result = engine.run(mode, fault); inspect();
+    result = engine.run(mode, fault); inspect(); renderOutcome();
     started = true; elapsed = motion.matches ? duration : 0; playing = !motion.matches; phase = -1;
     renderPhase(true); drawPackets(); sync();
   }
   function setMode(next) {
     mode = next; fault = 'clean';
+    host.classList.toggle('flow-ai', mode === 'ai');
+    nodes.model.querySelector('svg').innerHTML = mode === 'ai' ? '<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4M9 10h6m-6 4h4"/>' : defaultModelIcon;
     const example = modes[mode];
     $('[data-flow-name]').textContent = example.name;
     Object.entries(example.nodes).forEach(([id, values]) => {
@@ -196,5 +227,5 @@
     if (motion.matches && started) { elapsed = duration; playing = false; renderPhase(true); drawPackets(); }
     sync();
   });
-  inspect(); drawWires();
+  inspect(); renderOutcome(); drawWires();
 })();

@@ -116,3 +116,29 @@
   .scenario-control select { max-width: 100%; }
   .record-trace li { grid-template-columns: 1fr; gap: 4px; }
 }
+
+/* A diagram should read before its implementation detail does. */
+.mode-short { display: none; }
+.pipeline-heading > p { max-width: 44ch; }
+.arch-nodes { row-gap: 40px; padding-top: 28px; padding-bottom: 28px; }
+.arch-node { min-height: 128px; padding: 14px 12px 12px; }
+.node-icon { width: 20px; height: 20px; margin-bottom: 10px; }
+.node-source-a p, .node-source-b p, .arch-node:not(.node-source-a):not(.node-source-b) .node-meta { display: none; }
+.node-meta { margin-top: 10px; font-size: 10px; }
+.node-status { visibility: hidden; }
+.node-active .node-status, .node-output .node-status, .node-review .node-status, .node-held .node-status { visibility: visible; }
+.demo-result { min-height: 126px; }
+.demo-result > div { min-width: 0; }
+.flow-ai .node-model .node-icon { color: var(--accent); }
+@media (max-width: 760px) {
+  .arch-nodes { gap: 34px 20px; padding-top: 24px; padding-bottom: 24px; }
+  .arch-node { min-height: 0; padding: 12px; }
+  .flow-modes { width: 100%; }
+  .flow-modes button { flex: 1; padding: 10px 8px; font-size: 13px; }
+  .demo-result { min-height: 210px; }
+}
+@media (max-width: 560px) {
+  .mode-long { display: none; }
+  .mode-short { display: inline; }
+  .flow-modes button { padding-left: 6px; padding-right: 6px; }
+}

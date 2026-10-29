@@ -69,9 +69,9 @@
 </section>
 
 <section id="demo" class="pipeline-section" aria-labelledby="pipeline-title" data-pipeline>
-  <div class="pipeline-heading"><h2 id="pipeline-title">Follow the data.</h2><p>Watch records move. Try a fault to see what gets held.</p></div>
+  <div class="pipeline-heading"><h2 id="pipeline-title">Follow the data.</h2><p>Three examples of turning raw inputs into checked outputs.</p></div>
   <div class="pipeline-controls" hidden data-flow-controls>
-    <div class="flow-modes" role="group" aria-label="Choose an example"><button type="button" aria-pressed="true" data-flow-mode="data">Data engineering</button><button type="button" aria-pressed="false" data-flow-mode="cost">Cloud FinOps</button></div>
+    <div class="flow-modes" role="group" aria-label="Choose an example"><button type="button" aria-pressed="true" data-flow-mode="data" aria-label="Data pipelines"><span class="mode-long">Data pipelines</span><span class="mode-short">Data</span></button><button type="button" aria-pressed="false" data-flow-mode="cost">Cloud FinOps</button><button type="button" aria-pressed="false" data-flow-mode="ai" aria-label="Data pipeline with AI engineering">Data + AI</button></div>
     <div class="scenario-control"><label for="flow-scenario">Try a scenario</label><select id="flow-scenario" data-flow-scenario><option value="clean">Clean run</option><option value="duplicate">Duplicate payment</option><option value="missing">Missing settlement</option></select></div>
   </div>
   <div class="flow-canvas">
@@ -89,22 +89,31 @@
       </div>
     </div>
     <div class="flow-log"><p data-flow-log>Transactions and statements come together. Matched records reach reporting; exceptions go to review.</p><span data-flow-progress>Illustrative flow</span></div>
-    <div class="demo-result" hidden data-demo-result><div><h3 data-result-title></h3><p data-result-description></p></div><dl><div><dt>Published</dt><dd data-published></dd></div><div><dt>Held for review</dt><dd data-held></dd></div></dl></div>
+    <div class="demo-result" hidden data-demo-result><div><h3 data-result-title></h3><p data-result-description></p></div><dl><div><dt data-published-label>Sent to reporting</dt><dd data-published></dd></div><div><dt data-held-label>Held for review</dt><dd data-held></dd></div></dl></div>
   </div>
-  <p class="pipeline-note">Synthetic data, real checks in your browser. The diagram illustrates an approach, not a client architecture.</p>
+  <p class="pipeline-note">Synthetic examples. Real validation in your browser.</p>
   <p class="sr-only" role="status" aria-live="polite" data-flow-announcement></p>
-  <details class="demo-inspector" hidden data-inspector><summary>Inspect a record and its checks</summary><div class="inspector-body"><div class="trace-control"><label for="trace-record">Trace a record</label><select id="trace-record" data-trace-select></select></div><ol class="record-trace" data-record-trace></ol><h3>Checks on this run</h3><ul class="check-list" data-check-list></ul><p class="inspector-note">The PDF is a visual example; statement rows are supplied as synthetic extracted data. This demo does not parse PDFs or connect to live accounts.</p><details class="decision-note"><summary>Why the demo works this way</summary><p>Amounts use integer minor units, cents or kobo, so rounding stays testable. Shared costs use largest-remainder allocation to preserve the total. Duplicate records and missing matches or owners go to review instead of being silently repaired. Those are choices implemented in this demo.</p><a href="https://github.com/myekini/myekini/blob/main/site/pipeline-engine.js">Read the demo logic on GitHub</a></details></div></details>
+  <details class="demo-inspector" hidden data-inspector><summary>Inspect a record and its checks</summary><div class="inspector-body"><div class="trace-control"><label for="trace-record">Trace a record</label><select id="trace-record" data-trace-select></select></div><ol class="record-trace" data-record-trace></ol><h3>Safety checks</h3><ul class="check-list" data-check-list></ul><p class="inspector-note" data-demo-disclosure>The PDF is a visual example; statement rows are supplied as synthetic extracted data. This demo does not parse PDFs or connect to live accounts.</p><details class="decision-note"><summary>Why the demo works this way</summary><p>Amounts use integer minor units, cents or kobo, so rounding stays testable. Shared costs use largest-remainder allocation to preserve the total. Duplicate records and missing matches or owners go to review instead of being silently repaired. Those are choices implemented in this demo.</p><a href="https://github.com/myekini/myekini/blob/main/site/pipeline-engine.js">Read the demo logic on GitHub</a></details></div></details>
 </section>
 
 <section id="work" class="section">
   <div class="section-head">
     <h2>Selected work</h2>
-    <span class="hint">Data engineering / Cloud FinOps</span>
   </div>
 
   <div class="selected-work">
-    <article class="work-story"><h3>Reconcile payments. <br>Resolve disputes faster.</h3><p class="story-domain">Data engineering · WAYA Bank</p><p>Automated reconciliation across 33+ payment providers and bank statements, with a dispute portal and a consolidated warehouse.</p><dl class="story-results"><div><dt>Manual reconciliation workload</dt><dd>−80%</dd></div><div><dt>Dispute resolution time</dt><dd>48h → &lt;24h</dd></div></dl><details class="case-note"><summary>How I approached it</summary><p>Automated reconciliation across 33+ payment providers and bank statements. Consolidated 50+ microservices into a PostgreSQL warehouse, with Airflow batch loads and Kafka streaming for high-priority tables.</p><p>The result: 80% less manual reconciliation work and dispute resolution reduced from 48 hours to under 24 hours.</p><a href="#waya-work">Full role details</a></details></article>
-    <article class="work-story"><h3>Trace cloud costs. <br>Catch reporting errors.</h3><p class="story-domain">Cloud FinOps · freelance</p><p>Monthly cost reporting across 35+ AWS accounts, reconciling source exports to the reporting model and investigating anomalies.</p><dl class="story-results"><div><dt>Manual-refresh errors caught</dt><dd>~$135K</dd></div><div><dt>Refresh and validation time</dt><dd>~60% less</dd></div></dl><details class="case-note"><summary>What sat behind the results</summary><p>I reconcile Cost Explorer exports to the reporting model and investigate anomalies across 35+ AWS accounts.</p><p>For reservations and marketplace offers, I designed daily amortization and offset logic to remove lump-sum double counting. Separately, I caught about $135K of manual-refresh errors before they reached leadership.</p><a href="#finops-work">Full role details</a></details></article>
+    <article class="work-story">
+      <header class="story-head"><h3>Payment reconciliation</h3><p class="story-domain">WAYA Bank · Data engineering</p></header>
+      <p class="story-copy">Automated reconciliation across 33+ payment providers and bank statements, with a dispute portal and a consolidated warehouse.</p>
+      <dl class="story-results"><div><dt>Manual reconciliation</dt><dd>80% less work</dd></div><div><dt>Dispute resolution</dt><dd>48h → &lt;24h</dd></div></dl>
+      <details class="case-note"><summary>Approach and role details</summary><p>Consolidated 50+ microservices into a PostgreSQL warehouse, with Airflow batch loads and Kafka streaming for high-priority tables.</p><a href="#waya-work">Full role details</a></details>
+    </article>
+    <article class="work-story">
+      <header class="story-head"><h3>Cloud cost reporting</h3><p class="story-domain">Freelance · Cloud FinOps</p></header>
+      <p class="story-copy">Monthly cost reporting across 35+ AWS accounts, reconciling source exports to the reporting model and investigating anomalies.</p>
+      <dl class="story-results"><div><dt>Reporting errors caught</dt><dd>~$135K</dd></div><div><dt>Refresh and validation</dt><dd>~60% less time</dd></div></dl>
+      <details class="case-note"><summary>Approach and role details</summary><p>For reservations and marketplace offers, I designed daily amortization and offset logic to remove lump-sum double counting. Separately, I caught about $135K of manual-refresh errors before they reached leadership.</p><a href="#finops-work">Full role details</a></details>
+    </article>
   </div>
   <details class="experience-disclosure" id="experience"><summary>Full experience <span>Six roles across data, finance and automation</span></summary>
 
@@ -177,25 +186,15 @@
 
 <section id="about" class="section">
   <h2>A little about me</h2>
-  <div class="about-grid">
-    <div class="bio">
-      <p>I’m based in Lagos, with experience across fintech, banking and enterprise cloud costs. Outside that work, I founded LOBB for tennis coach bookings and lead STACC, a data and tech community.</p>
+  <div class="about-layout">
+    <div class="about-person">
+      <p class="about-bio">I’m based in Lagos, with experience across fintech, banking and enterprise cloud costs. Outside that work, I founded LOBB for tennis coach bookings and lead STACC, a data and tech community.</p>
       <details class="background-note"><summary>Education and scholarships</summary><p>B.Tech, Mathematics and Statistics, Federal University of Technology Minna, 2019. KaggleX BIPOC Mentorship Program 2023, selected from 4,000+ applicants, and KaggleX Career Development Scholarship 2023. Google Africa Developer Scholarship, Google and Andela, 2021.</p></details>
+      <div class="elsewhere"><h3>Elsewhere</h3><ul class="ventures"><li><span class="n">LOBB</span><span class="d">Tennis coach bookings</span><span class="s"><a href="https://lobb.ng">lobb.ng</a></span></li><li><span class="n">STACC</span><span class="d">Data and tech community</span><span class="s"><a href="https://getstacc.org">getstacc.org</a></span></li><li><span class="n">DRFT</span><span class="d">Resume editor</span><span class="s">Pre-launch</span></li></ul></div>
     </div>
-  </div>
-  <div class="ls">
-    <div>
-      <div class="cmd">Elsewhere</div>
-      <ul class="ventures">
-        <li><span class="n">LOBB</span><span class="d">tennis coach bookings</span><span class="s"><a href="https://lobb.ng">lobb.ng</a></span></li>
-        <li><span class="n">STACC</span><span class="d">data and tech community</span><span class="s"><a href="https://getstacc.org">getstacc.org</a></span></li>
-        <li><span class="n">DRFT</span><span class="d">ai resume editor</span><span class="s">pre-launch</span></li>
-      </ul>
-    </div>
-    <div>
-      <div class="cmd">Tools I work with</div>
-      <p class="stack">python sql spark kafka airflow postgresql snowflake aws power-bi quicksight metabase docker github-actions mlflow</p>
-    </div>
+    <div class="toolkit"><h3>Tools I work with</h3><div class="tool-group"><h4>Data & pipelines</h4><ul class="tool-list"><li><img src="/assets/tools/python.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Python</span></li><li><img src="/assets/tools/sql.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>SQL</span></li><li><img src="/assets/tools/spark.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Spark</span></li><li><img src="/assets/tools/kafka.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Kafka</span></li><li><img src="/assets/tools/airflow.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Airflow</span></li><li><img src="/assets/tools/postgresql.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>PostgreSQL</span></li><li><img src="/assets/tools/snowflake.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Snowflake</span></li></ul></div>
+<div class="tool-group"><h4>Cloud & reporting</h4><ul class="tool-list"><li><img src="/assets/tools/aws.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>AWS</span></li><li><img src="/assets/tools/powerbi.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Power BI</span></li><li><img src="/assets/tools/quicksight.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>QuickSight</span></li><li><img src="/assets/tools/metabase.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Metabase</span></li></ul></div>
+<div class="tool-group"><h4>Shipping & experiments</h4><ul class="tool-list"><li><img src="/assets/tools/docker.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>Docker</span></li><li><img src="/assets/tools/githubactions.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>GitHub Actions</span></li><li><img src="/assets/tools/mlflow.svg" alt="" width="20" height="20" loading="lazy" decoding="async"><span>MLflow</span></li></ul></div></div>
   </div>
 </section>
 

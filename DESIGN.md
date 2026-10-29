@@ -66,11 +66,11 @@ components:
 
 The established direction is an editorial engineering portfolio in a near-black and amber world. Large, restrained sans-serif headings and readable narrative sit alongside monospaced labels, numbered navigation and terminal-like details. The ASCII portrait and user-responsive ASCII sand across the hero are the distinctive identity assets.
 
-Data Engineering and Cloud FinOps receive equal visual weight in the professional title, example selector and paired work stories. User-triggered ASCII sand gives the hero a tactile background; the seven-node architecture diagram carries document-shaped packets from sources through checks to reporting or human review. Supporting explanations expand in place, keeping the default reading path short.
+Data Engineering and Cloud FinOps receive equal visual weight in the professional title and work stories; Data + AI is a supporting pipeline example. User-triggered ASCII sand gives the hero a tactile background; the seven-node architecture diagram carries document-shaped packets from sources through checks to reporting or human review. Supporting explanations expand in place, keeping the default reading path short.
 
 **Key Characteristics:**
 
-- Broad desktop composition with open editorial columns.
+- Broad desktop composition with ruled work rows and an aligned toolkit.
 - Text-first mobile hierarchy and a small supporting portrait.
 - Amber for emphasis and interaction; green for completion and availability.
 - Thin rules, square containers and minimal tonal depth.
@@ -91,13 +91,13 @@ Green is a functional state color for availability, completed stages and success
 
 DM Sans, with system sans-serif fallbacks, carries the name, professional title, narrative, headings and action labels. JetBrains Mono, with system monospace fallbacks, carries technical labels, navigation, dates, metrics and terminal cues.
 
-The display and section-heading tokens describe desktop defaults. The professional title scales from 17px to 22px; the hero proposition scales from 21px to 28px with a 1.45 line height. Selected-work headings scale from 23px to 29px. Narrative commonly uses 15px to 17px with line heights around 1.55 to 1.7. Technical labels generally use 10px to 13px. Headings use medium weight rather than heavy bold.
+The display and section-heading tokens describe desktop defaults. The professional title scales from 17px to 22px; the hero proposition scales from 21px to 28px with a 1.45 line height. Selected-work headings use 24px, reducing to 23px on phones. Narrative commonly uses 15px to 17px with line heights around 1.55 to 1.7. Technical labels generally use 10px to 13px. Headings use medium weight rather than heavy bold.
 
 ## Layout
 
-The centered outer canvas is 1120px including fluid horizontal padding from 20px to 32px. Desktop hero content uses a flexible text column beside a 360px portrait with a 32px gap. Selected work has two equal columns separated by 64px. Narrative measures are local to their purpose: work stories use up to 50ch, biography up to 65ch, and section introductions up to 70ch.
+The centered outer canvas is 1120px including fluid horizontal padding from 20px to 32px. Desktop hero content uses a flexible text column beside a 360px portrait with a 32px gap. Selected work uses full-width ruled rows with aligned context, narrative and results columns, separated by 32px gaps. Narrative measures are local to their purpose: work stories use up to 50ch, biography up to 65ch, and section introductions up to 70ch.
 
-Sections use 80px vertical padding and a top rule. At 960px, the hero portrait reduces to 280px and major column gaps tighten. At 760px, sections reduce to 52px padding, work stories stack, and the architecture diagram changes from a horizontal merge and fork to a vertical merge and fork. Hero text owns the reading order; its portrait becomes a 140px supporting image at the upper right. At 560px, the portrait reduces to 112px (96px below 380px), navigation spans its own row, experience dates move above the title and metric descriptions stack beneath their labels.
+Sections use 80px vertical padding and a top rule. At 960px, the hero portrait reduces to 280px and major column gaps tighten. At 960px, work combines context and narrative beside the results. At 560px, each story stacks with paired metrics. At 760px, sections reduce to 52px padding and the architecture diagram changes from a horizontal merge and fork to a vertical merge and fork. Hero text owns the reading order; its portrait becomes a 140px supporting image at the upper right. At 560px, the portrait reduces to 112px (96px below 380px), navigation spans its own row, experience dates move above the title and metric descriptions stack beneath their labels.
 
 Navigation, actions and pipeline controls have at least 44px interactive height; hero actions use 48px. Anchor clearance follows the measured sticky-header height rather than a fixed desktop assumption.
 
@@ -117,21 +117,19 @@ The primary action uses amber fill with dark text. The secondary action is trans
 
 ### Synthetic architecture demonstration
 
-Seven nodes form a directed graph: two sources merge into ingestion, then pass through modelling and validation before forking to reporting and human review. Desktop uses five columns and two rows. At 760px and below, paired sources sit above three centered processing nodes, with paired outputs below. SVG wires follow the nodes on resize. Nodes use raised black, gray borders, line icons, sans-serif titles and monospaced source labels.
+Seven nodes form a directed graph: paired sources merge into compute/process/check stages, then fork to checked output and review. Desktop uses five columns; mobile uses a vertical merge and fork. Only source nodes retain filenames. Processing nodes show a concise title and description; status is visible where it adds information, including active stages and flagged/output states.
 
-Equal-weight mode buttons select payment reconciliation or cloud-cost allocation. An amber underline and faint amber fill mark selection. A labelled native select offers a clean run plus two faults per example: duplicate payment or missing settlement; double-counted charge or missing owner. Replay restarts the run. Pause becomes Resume during an unfinished run and disappears at completion or with reduced motion.
+Three controls select Data pipelines, Cloud FinOps or Data + AI. The native scenario selector offers a clean fixture and two planted faults for each mode. Data + AI computes cost changes before a simulated LLM response, then checks shown currency amounts and source references. The diagram labels the response as simulated. The inspector exposes source facts, an illustrative prompt contract, the fixture response, validation and routing. It does not claim live inference or semantic truth checking.
 
-Document-shaped SVG packets travel along wires over a finite seven-second run in five causal phases. The bounded requestAnimationFrame clock suspends while paused, offscreen or in a hidden document. Active nodes use amber; passed wires and completed states use green; held exceptions use amber. Text distinguishes waiting, processing, paused, published and held outcomes. A separate polite status region announces manually triggered completion.
-
-Results show published and held record counts and currency-formatted totals: NGN for payments and USD for cloud costs. Outcomes come from a deterministic synthetic engine checking matches, duplicates, missing owners, input conservation and cent-preserving shared allocation. A collapsed inspector exposes record traces and checks; a nested disclosure explains integer minor units and largest-remainder allocation.
-
-Reduced motion immediately presents a completed static outcome without travelling packets. Without JavaScript, authored payment nodes and explanations remain readable; enhancement controls and the computed inspector remain hidden. This browser demonstration is separate from the planned public builds. PDF imagery represents supplied synthetic extracted statement rows; no PDF parsing or live account connection is claimed.
+Outcomes are computed and shown immediately; a 5.6-second illustration explains their path without blocking results. Packet drawing is capped at 30fps, geometry is cached between layout changes, and offscreen/hidden motion is suspended. Replay and pause remain native buttons. Reduced motion shows the static completed path. Clean AI drafts are ready for human approval; flagged drafts go to review and no data is changed.
 
 ### Selected work and progressive disclosure
 
-Selected work retains two equal editorial columns, with domain labels, narrative and ruled metric rows. Each story has a native disclosure for its approach and a link to the full role. Full experience is a closed outer disclosure containing six native role disclosures. Role links and matching URL fragments open enclosing disclosures before navigation.
+Both case studies follow the same context, summary, two results and disclosure sequence. Full-width editorial rows share column boundaries and a top rule. At intermediate widths, context and summary share one column beside the results; phones stack the story with two equal metric columns. The matching native disclosure label is “Approach and role details.” Full experience remains a closed disclosure with all six roles and working deep links.
 
-Education, the LLM principle, technical inspection and implementation rationale also use native disclosures. Summary targets are at least 44px high and use amber hover. The full-experience summary has a top rule, muted supporting label and amber plus/minus sign. Supporting detail expands in place while the default reading path stays short.
+### About and tools
+
+Biography, education disclosure and ventures share the left column; the toolkit occupies the right. Fourteen labelled tools are grouped into Data & pipelines, Cloud & reporting, and Shipping & experiments. Local 20px monochrome icons share fixed alignment boxes beside names. The grid uses three columns when space permits and two on narrow columns/phones. Icons supplement visible labels and are decorative to assistive technology. Source provenance and authored capability symbols are recorded in site/assets/tools/SOURCES.md. No new skills are introduced.
 
 ### Public builds
 

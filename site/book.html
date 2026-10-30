@@ -22,9 +22,12 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <style>
-  .book { min-height: 100svh; display: flex; align-items: center; padding-top: 48px; padding-bottom: 48px; }
-  .book h1 { font-family: var(--sans); font-size: clamp(56px, 9vw, 104px); line-height: 1; letter-spacing: -.04em; font-weight: 500; color: var(--text-strong); }
-  .book .lede { max-width: 560px; }
+  .book { min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 48px; align-items: center; padding-top: 48px; padding-bottom: 48px; }
+  .book h1 { font-family: var(--sans); font-size: clamp(56px, 7vw, 96px); line-height: 1; letter-spacing: -.04em; font-weight: 500; color: var(--text-strong); }
+  .book .lede { max-width: 520px; }
+  .calendly-inline-widget { min-width: 320px; height: 700px; border: 1px solid var(--line-strong); }
+  .fallback { margin-top: 12px; font-size: 12px; color: var(--muted); }
+  @media (max-width: 860px) { .book { grid-template-columns: 1fr; gap: 32px; min-height: 0; align-items: start; } }
 </style>
 </head>
 <body>
@@ -34,10 +37,15 @@
     <p class="role">20 minutes<span>·</span>Data engineering<span>·</span>Cloud cost</p>
     <p class="lede">Hiring for a data role, or trying to work out where a cloud bill comes from? Pick a time and tell me a little about it. A billing export is welcome but optional.</p>
     <div class="hero-actions">
-      <a class="action primary" href="https://calendly.com/myekini/cloud-cost-allocation-review">Pick a time <span aria-hidden="true">→</span></a>
       <a class="action" href="/">See my work <span aria-hidden="true">→</span></a>
     </div>
   </div>
+  <div>
+    <!-- Calendly inline embed; colour params apply only on a paid Calendly plan -->
+    <div class="calendly-inline-widget" data-url="https://calendly.com/myekini/cloud-cost-allocation-review?hide_gdpr_banner=1&amp;background_color=0d0e0f&amp;text_color=e8e9eb&amp;primary_color=d69e2e"></div>
+    <p class="fallback">Calendar not loading? <a href="https://calendly.com/myekini/cloud-cost-allocation-review">Open it on Calendly</a></p>
+  </div>
 </main>
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>

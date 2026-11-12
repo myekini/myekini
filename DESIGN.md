@@ -129,7 +129,7 @@ Both case studies follow the same context, summary, two results and disclosure s
 
 ### About and tools
 
-Biography, education disclosure and ventures share the left column; the toolkit occupies the right. Fourteen labelled tools are grouped into Data & pipelines, Cloud & reporting, and Shipping & experiments. Local 20px monochrome icons share fixed alignment boxes beside names. The grid uses three columns when space permits and two on narrow columns/phones. Icons supplement visible labels and are decorative to assistive technology. Source provenance and authored capability symbols are recorded in site/assets/tools/SOURCES.md. No new skills are introduced.
+Biography, education disclosure and ventures share the left column; the toolkit occupies the right. Fourteen labelled tools are grouped into Data & pipelines, Cloud & reporting, and Shipping & experiments. Local 20px monochrome icons share fixed alignment boxes beside names. The grid uses three columns when space permits and two on narrow columns/phones. Icons supplement visible labels and are decorative to assistive technology. Source provenance and authored capability symbols are recorded in docs/tool-icon-sources.md. No new skills are introduced.
 
 ### Public builds
 

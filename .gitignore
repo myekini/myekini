@@ -1,6 +1,12 @@
-# Private career workspace. This repo is public (it powers the GitHub profile),
-# so the OS and its copies stay out of git.
+# This repo is public (it powers the GitHub profile). The private career
+# workspace now lives in its own repo beside this one; the rule stays as a
+# guard in case a copy is ever put back here.
 /Muhammad Yekini (OS)/
+
+# Internal product and design briefs for the site. Kept locally for the
+# design tooling, not published.
+/docs/PRODUCT.md
+/docs/DESIGN.md
 
 .vercel
 .DS_Store

@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Muhammad Yekini</h1>
 
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=21&pause=1200&color=D69E2E&center=true&vCenter=true&width=600&height=42&lines=Data+Engineer+%C2%B7+Cloud+FinOps;Payment+and+cloud-cost+data+that+adds+up;AI+features+tested+like+code" alt="Data Engineer · Cloud FinOps · Payment and cloud-cost data that adds up" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=21&pause=1200&color=D69E2E&center=true&vCenter=true&width=600&height=42&lines=Data+%26+AI+Engineer;Payment+and+cloud-cost+data+that+adds+up;AI+that+answers+from+the+source" alt="Data &amp; AI Engineer · Payment and cloud-cost data that adds up" />
 
   <p align="center">
     <a href="https://muhammadyekini.com"><img src="https://img.shields.io/badge/Portfolio-muhammadyekini.com-d69e2e?style=flat-square" alt="Portfolio" /></a>
@@ -13,7 +13,7 @@
 
 ---
 
-**Data Engineer · Cloud FinOps · Payment and cloud-cost data that adds up**
+**Data & AI Engineer · Payment and cloud-cost data that adds up**
 
 I build the data systems that make finance numbers add up, and the AI on top that has to show its work.
 
@@ -31,7 +31,7 @@ Open to remote roles and relocation.
 | Apr 2025 – Apr 2026 | **Data Science Specialist**<br/><sub>Amdari · Remote</sub> | Coached 300+ interns through end-to-end data science projects. Designed 50+ case studies, each with a worked solution and a recorded walkthrough. |
 | Oct 2024 – Oct 2025 | **Data Engineer (Consultant)**<br/><sub>WAYA Bank · Remote</sub> | Built an automated reconciliation system and dispute portal across 33+ payment providers and bank statements, cutting manual reconciliation by 80% and dispute resolution from 48 hours to under 24. Consolidated 50+ microservices into one PostgreSQL (RDS) warehouse, cutting cross-service query latency by 50%. Airflow batch plus Kafka streaming for high-priority tables at under 5 minutes. |
 | Feb 2024 – Oct 2024 | **Data Product Manager**<br/><sub>Earnipay · Hybrid product and data role</sub> | AWS pipeline (Glue, Redshift, Lambda) 40% faster. A/B tests on onboarding and KYC cut drop-off by 20%; cohort analysis lifted retention by 15%. Shipped the loan feature (Mono bank linking, CRC credit checks, salary-based limits), processing ₦2M+ in loans during beta before rollout to 5K+ users. |
-| Mar 2022 – Nov 2023 | **AI & Automation Engineer**<br/><sub>Mobi Automation</sub> | LLM support automation (OpenAI GPT, Hugging Face) handling 70% of tier-1 inquiries without an agent and cutting resolution time by 15%. Python NLP chatbots that lifted user engagement by 60%. |
+| Mar 2022 – Nov 2023 | **AI & Automation Engineer**<br/><sub>Mobi Automation</sub> | Built the retrieval (RAG) layer behind MOBI SupportBot (LangChain, Pinecone, OpenAI) so it answered from the company's PDF documents; the beta handled 70% of tier-1 inquiries without an agent and cut resolution time by 15%. Python NLP chatbots that lifted user engagement by 60%. |
 | Mar 2022 – Aug 2023 | **Python Engineer Team Lead**<br/><sub>Bincom Dev Center · Intern → Junior Engineer → Team Lead</sub> | Led a team of 4 refactoring the loan-application codebase for Social Lender, cutting processing time by 20%. Automated onboarding data extraction, cutting manual entry time by 25% and errors by 30%. |
 
 ---
